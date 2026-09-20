@@ -1,0 +1,3501 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A desktop GUI for viewing and managing Git repositories, on macOS, Linux and Windows. Built with Qt/QML and libgit2.">
+      
+      
+        <meta name="author" content="pasdam">
+      
+      
+        <link rel="canonical" href="https://source-manager.github.io/docs/comparison/matrix/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../pricing/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>The feature matrix - source-manager</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#the-feature-matrix" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="source-manager" class="md-header__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            source-manager
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The feature matrix
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="source-manager" class="md-nav__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    source-manager
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/tour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A tour of the window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/keyboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyboard and the palette
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/fleet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The fleet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/changes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes and staging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/commit-messages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing a commit message
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/diffs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reading a diff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History, graph and search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/splitting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splitting a branch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/extracting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taking pieces out of a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/rewriting-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting history
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/merging-conflicts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Merging and conflicts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/tags-and-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tags and notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/stash-worktrees-submodules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stash, worktrees, submodules, subtrees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/remotes-transport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remotes and transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/lfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git LFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/signing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/patches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/bisect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bisect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/forge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests and CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/reviewing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewing a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/tickets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Asking a model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repository metrics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation and external tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/safety/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Undo, backups and the log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the git directory is made of
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Comparison
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Comparison
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    The feature matrix
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    The feature matrix
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#commercial-desktop-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commercial desktop clients
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#free-open-source-editor-and-terminal-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Free, open-source, editor and terminal clients
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-inventory-by-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature inventory, by category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature inventory, by category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-and-fleet-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository and fleet management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history-graph-and-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      History, graph and search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-tree-staging-and-committing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working tree, staging and committing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diff reading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching-merging-rebasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching, merging, rebasing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stash-worktrees-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stash, worktrees, submodules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remotes-and-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remotes and transport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forge-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forge integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation-extension-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automation, extension, environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pricing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the field charges for
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../roadmap/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Closed as decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/non-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deliberate non-goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licensing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Licensing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../development/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/building/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/releasing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releasing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    These docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#commercial-desktop-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Commercial desktop clients
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#free-open-source-editor-and-terminal-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Free, open-source, editor and terminal clients
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-inventory-by-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature inventory, by category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature inventory, by category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-and-fleet-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Repository and fleet management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#history-graph-and-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      History, graph and search
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#working-tree-staging-and-committing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Working tree, staging and committing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diff-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diff reading
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branching-merging-rebasing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Branching, merging, rebasing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stash-worktrees-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stash, worktrees, submodules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remotes-and-transport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remotes and transport
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forge-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Forge integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automation-extension-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automation, extension, environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/source-manager/app/edit/main/docs/comparison/matrix.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="the-feature-matrix">The feature matrix<a class="headerlink" href="#the-feature-matrix" title="Permanent link">&para;</a></h1>
+<p><strong>Legend</strong> — <code>●</code> full or first-class · <code>◐</code> partial or awkward · <code>○</code> absent · <code>💰</code> the feature
+(or the useful half of it) requires payment · <code>‡</code> <strong>this app only</strong>: implemented and verified
+in shape but never exercised against the real thing.</p>
+<p>Compiled August 2026. <a href="../">Read the dating caveat</a> before the ratings — every other
+column is as old as that date and this app's is not.</p>
+<h2 id="commercial-desktop-clients">Commercial desktop clients<a class="headerlink" href="#commercial-desktop-clients" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th><strong>source-manager</strong></th>
+<th>GitKraken</th>
+<th>Tower</th>
+<th>Fork</th>
+<th>Sublime Merge</th>
+<th>SmartGit</th>
+<th>Sourcetree</th>
+<th>GitHub Desktop</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform breadth</td>
+<td>● mac, Linux, Windows‡</td>
+<td>●</td>
+<td>◐ no Linux</td>
+<td>◐ no Linux</td>
+<td>●</td>
+<td>●</td>
+<td>◐ no Linux</td>
+<td>◐ no Linux</td>
+</tr>
+<tr>
+<td>Cost to use fully</td>
+<td>● free noncomm.</td>
+<td>◐ 💰</td>
+<td>○ 💰</td>
+<td>◐ 💰</td>
+<td>◐ 💰</td>
+<td>◐ 💰 free non-comm.</td>
+<td>● free</td>
+<td>● free</td>
+</tr>
+<tr>
+<td>Multi-repo / workspaces</td>
+<td>● fleet page, scan, groups, <strong>second window</strong></td>
+<td>● 💰 teams</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Commit graph &amp; history</td>
+<td>● lanes, ref pills</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○ <strong>no graph</strong></td>
+</tr>
+<tr>
+<td>History search</td>
+<td>● 6 scopes incl. <code>log -G</code>, batched</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>● best-in-class</td>
+<td>●</td>
+<td>◐</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Diff viewer</td>
+<td>● unified/split, syntax, word marks, ctx dial</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Image / binary diff</td>
+<td>● swipe, onion skin, binary + LFS states</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Staging granularity</td>
+<td>● file / hunk / line</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>● split hunks</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Commit authoring</td>
+<td>● co-authors, templates, path/log suggestions</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Amend / rewrite</td>
+<td>● any commit, via a one-row rebase</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Interactive rebase</td>
+<td>● plan then apply, all 6 verbs</td>
+<td>● 💰</td>
+<td>● drag&amp;drop</td>
+<td>●</td>
+<td>◐ per-commit</td>
+<td>●</td>
+<td>●</td>
+<td>◐ squash/reorder</td>
+</tr>
+<tr>
+<td>Cherry-pick / revert / reset</td>
+<td>● incl. hunk &amp; line revert</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐ no reset</td>
+</tr>
+<tr>
+<td>Conflict resolution</td>
+<td>● 3-way per hunk + external tool</td>
+<td>● 💰</td>
+<td>● wizard</td>
+<td>●</td>
+<td>●</td>
+<td>● + SemanticMerge</td>
+<td>◐ external</td>
+<td>◐ external</td>
+</tr>
+<tr>
+<td>Stash</td>
+<td>● + stash-staged, rename, edit</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐ one per branch</td>
+</tr>
+<tr>
+<td>Branch management</td>
+<td>● + upstream, drift, tidy-up signals</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>● signed; no force, by decision</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Remotes &amp; transport</td>
+<td>● fetch/push/pull/clone, lease, force</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Worktrees</td>
+<td>●</td>
+<td>● 💰</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Submodules / subtrees</td>
+<td>● full lifecycle + <strong>subtrees</strong></td>
+<td>◐</td>
+<td>● / ◐</td>
+<td>● / ◐</td>
+<td>● / ○</td>
+<td>● best-in-class</td>
+<td>● / ◐</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Blame &amp; file history</td>
+<td>● + renames, + change heatmap</td>
+<td>● 💰</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○ opens browser</td>
+</tr>
+<tr>
+<td>Reflog &amp; undo</td>
+<td>● reflog + typed undo log + file backups</td>
+<td>◐</td>
+<td>● "undo everything"</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Hooks management</td>
+<td>● list/edit/enable/delete</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Git LFS</td>
+<td>● incl. locking</td>
+<td>●</td>
+<td>●</td>
+<td>● + locking</td>
+<td>◐</td>
+<td>● pointer states</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>GPG / SSH signing</td>
+<td>● openpgp + ssh + x509‡</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Bisect</td>
+<td>● native, reads git's own state</td>
+<td>○</td>
+<td>○</td>
+<td>●</td>
+<td>○</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Patches (export / apply)</td>
+<td>● export, import, series, <code>am</code></td>
+<td>◐ 💰 cloud</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Pull requests</td>
+<td>● GitHub, GitLab, Bitbucket‡</td>
+<td>● 💰</td>
+<td>● 4 forges</td>
+<td>◐</td>
+<td>○</td>
+<td>● 4 forges</td>
+<td>◐ Bitbucket</td>
+<td>● GitHub</td>
+</tr>
+<tr>
+<td>CI / checks</td>
+<td>● runs, jobs, steps</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+<td>● re-run</td>
+</tr>
+<tr>
+<td>Code review</td>
+<td>● drafts, submit, line comments</td>
+<td>◐</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+<td>● + 💰 distributed</td>
+<td>○</td>
+<td>◐ browser</td>
+</tr>
+<tr>
+<td>Issue trackers</td>
+<td>● GitHub Issues, Jira, Linear‡ + link rules</td>
+<td>● 💰 Jira/Trello</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>◐ Jira</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Repository insights</td>
+<td>● history + DORA + people + CI</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Keyboard-first / palette</td>
+<td>● palette + hints + usage ranking</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Extensibility</td>
+<td>◐ sequences + custom command</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+<td>● plugin API</td>
+<td>◐</td>
+<td>◐ custom actions</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Editor / terminal / shell</td>
+<td>● templated, + file manager</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>● + git console</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Theming / a11y / i18n</td>
+<td>● 3 palettes, AA-verified, i18n</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>AI features</td>
+<td>● bring-your-own-key, local-first, per-repo gate</td>
+<td>● 💰</td>
+<td>● 💰</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Non-git VCS</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>● SVN + Hg</td>
+<td>◐ Hg legacy</td>
+<td>○</td>
+</tr>
+</tbody>
+</table>
+<h2 id="free-open-source-editor-and-terminal-clients">Free, open-source, editor and terminal clients<a class="headerlink" href="#free-open-source-editor-and-terminal-clients" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th><strong>source-manager</strong></th>
+<th>GitButler</th>
+<th>SourceGit</th>
+<th>Git Extensions</th>
+<th>TortoiseGit</th>
+<th>Lazygit</th>
+<th>Magit</th>
+<th>GitLens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Platform breadth</td>
+<td>● mac, Linux, Windows‡</td>
+<td>●</td>
+<td>●</td>
+<td>◐ Windows</td>
+<td>○ Windows only</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Cost to use fully</td>
+<td>● free noncomm.</td>
+<td>● free</td>
+<td>● free</td>
+<td>● free</td>
+<td>● free</td>
+<td>● free</td>
+<td>● free</td>
+<td>◐ 💰</td>
+</tr>
+<tr>
+<td>Multi-repo / workspaces</td>
+<td>● + second window</td>
+<td>◐</td>
+<td>● groups</td>
+<td>◐</td>
+<td>○ shell-based</td>
+<td>◐</td>
+<td>◐ repolist</td>
+<td>● 💰</td>
+</tr>
+<tr>
+<td>Commit graph &amp; history</td>
+<td>●</td>
+<td>◐ lanes, not a graph</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐ ASCII</td>
+<td>◐</td>
+<td>● 💰 private</td>
+</tr>
+<tr>
+<td>History search</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>● <code>-S</code>/<code>-G</code></td>
+<td>●</td>
+</tr>
+<tr>
+<td>Diff viewer</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>● (+ delta)</td>
+<td>● word/refine</td>
+<td>● VS Code's</td>
+</tr>
+<tr>
+<td>Image / binary diff</td>
+<td>● swipe, onion skin</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Staging granularity</td>
+<td>● file/hunk/line</td>
+<td>● drag hunks between lanes</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>● region-level</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Commit authoring</td>
+<td>● co-authors, templates, suggestions</td>
+<td>●</td>
+<td>● templates</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Amend / rewrite</td>
+<td>● any commit</td>
+<td>● split/reorder post-push</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Interactive rebase</td>
+<td>●</td>
+<td>● drag&amp;drop</td>
+<td>◐ basic</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>● best-in-class</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Cherry-pick / revert / reset</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Conflict resolution</td>
+<td>● + external tool</td>
+<td>◐ commits conflicts</td>
+<td>●</td>
+<td>● external</td>
+<td>● TortoiseGitMerge</td>
+<td>●</td>
+<td>● Ediff/smerge</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Stash</td>
+<td>●</td>
+<td>◐ replaced by lanes</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Branch management</td>
+<td>● + stacked</td>
+<td>● <strong>virtual + stacked</strong></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Tags</td>
+<td>● signed</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Remotes &amp; transport</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Worktrees</td>
+<td>●</td>
+<td>○ (lanes instead)</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>●</td>
+<td>●</td>
+<td>● 💰</td>
+</tr>
+<tr>
+<td>Submodules / subtrees</td>
+<td>● / ●</td>
+<td>○</td>
+<td>● / ○</td>
+<td>● / ◐</td>
+<td>● / ○</td>
+<td>● / ○</td>
+<td>● / ●</td>
+<td>◐ / ○</td>
+</tr>
+<tr>
+<td>Blame &amp; file history</td>
+<td>● + heatmap</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>● dedicated app</td>
+<td>◐</td>
+<td>●</td>
+<td>● inline</td>
+</tr>
+<tr>
+<td>Reflog &amp; undo</td>
+<td>●</td>
+<td>● <strong>snapshot per operation</strong></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>● undo/redo</td>
+<td>● reflog + wip</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Hooks management</td>
+<td>●</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+<td>●</td>
+<td>○</td>
+<td>◐</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Git LFS</td>
+<td>● incl. locking</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>GPG / SSH signing</td>
+<td>● + x509‡</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Bisect</td>
+<td>● native</td>
+<td>○</td>
+<td>◐</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Patches (export / apply)</td>
+<td>● export, import, series, <code>am</code></td>
+<td>◐</td>
+<td>● both</td>
+<td>● + email</td>
+<td>● + email</td>
+<td>● <strong>cross-commit</strong></td>
+<td>● + bundle</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Pull requests</td>
+<td>● 3 forges‡</td>
+<td>● GitHub, <strong>stacked PRs</strong></td>
+<td>◐</td>
+<td>◐ plugin</td>
+<td>○</td>
+<td>◐ browser</td>
+<td>● via Forge</td>
+<td>● 💰</td>
+</tr>
+<tr>
+<td>CI / checks</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>◐ Jenkins/TC</td>
+<td>○</td>
+<td>○</td>
+<td>◐</td>
+<td>◐</td>
+</tr>
+<tr>
+<td>Code review</td>
+<td>●</td>
+<td>◐</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>◐ Forge</td>
+<td>◐ w/ ext.</td>
+</tr>
+<tr>
+<td>Issue trackers</td>
+<td>● GitHub Issues, Jira, Linear‡ + link rules</td>
+<td>○</td>
+<td>◐ link rules</td>
+<td>◐ Jira/Gerrit</td>
+<td>◐ bugtraq</td>
+<td>○</td>
+<td>● Forge topics</td>
+<td>● 💰</td>
+</tr>
+<tr>
+<td>Repository insights</td>
+<td>●</td>
+<td>○</td>
+<td>○</td>
+<td>◐ statistics</td>
+<td>◐ statistics</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+<tr>
+<td>Keyboard-first / palette</td>
+<td>●</td>
+<td>◐</td>
+<td>◐</td>
+<td>◐</td>
+<td>○</td>
+<td>●</td>
+<td>● transients</td>
+<td>●</td>
+</tr>
+<tr>
+<td>Extensibility</td>
+<td>◐ sequences + custom command</td>
+<td>○</td>
+<td>◐</td>
+<td>● plugins</td>
+<td>◐</td>
+<td>● config.yml</td>
+<td>● all of Elisp</td>
+<td>● VS Code API</td>
+</tr>
+<tr>
+<td>Editor / terminal / shell</td>
+<td>●</td>
+<td>◐</td>
+<td>●</td>
+<td>● Explorer + VS</td>
+<td>● Explorer overlays</td>
+<td>●</td>
+<td>● is the editor</td>
+<td>● is the editor</td>
+</tr>
+<tr>
+<td>Theming / a11y / i18n</td>
+<td>●</td>
+<td>◐</td>
+<td>● many locales</td>
+<td>◐ many locales</td>
+<td>◐ 30+ locales</td>
+<td>●</td>
+<td>● / ○ i18n</td>
+<td>●</td>
+</tr>
+<tr>
+<td>AI features</td>
+<td>● bring-your-own-key, local-first</td>
+<td>●</td>
+<td>◐ bring-your-own</td>
+<td>○</td>
+<td>○</td>
+<td>◐ custom cmds</td>
+<td>◐ packages</td>
+<td>● 💰</td>
+</tr>
+<tr>
+<td>Non-git VCS</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+<td>○</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">What <code>●</code> means for the AI row here</p>
+<p>Bring-your-own-key and <strong>local models</strong> — no credits, no account, nothing resold — with
+hosted models off until switched on globally <em>and</em> per repository. It is also, like the
+two forges, fixture-proved and not live-proved: the suite cannot reach a model, so it
+pins the shape and cannot say a real one answers well.</p>
+</div>
+<h2 id="feature-inventory-by-category">Feature inventory, by category<a class="headerlink" href="#feature-inventory-by-category" title="Permanent link">&para;</a></h2>
+<p>The union of what the field offers. <code>✔</code> present here, <code>✗</code> absent, <code>~</code> partial.</p>
+<h3 id="repository-and-fleet-management">Repository and fleet management<a class="headerlink" href="#repository-and-fleet-management" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes on the field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add / clone / open repository</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td><code>git init</code> a new repository</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Create the repository on the forge too, wire <code>origin</code></td>
+<td>✔</td>
+<td>GitKraken, GitHub Desktop; <strong>rare</strong></td>
+</tr>
+<tr>
+<td>Scan a folder for repositories</td>
+<td>✔</td>
+<td>Fork, SmartGit, SourceGit</td>
+</tr>
+<tr>
+<td>Group / tag / order repositories</td>
+<td>✔</td>
+<td>GitKraken Workspaces 💰, SmartGit, SourceGit</td>
+</tr>
+<tr>
+<td>Multi-repo dashboard (drift, dirt, stopped ops)</td>
+<td>✔</td>
+<td>GitKraken 💰; <strong>rare and strong here</strong></td>
+</tr>
+<tr>
+<td>Remove repository (forget / trash / delete)</td>
+<td>✔</td>
+<td>few offer all three</td>
+</tr>
+<tr>
+<td>Recently-used repository switcher</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Repository tabs / multiple windows</td>
+<td>✔ a second window</td>
+<td>Fork, Sublime Merge, Sourcetree, Tower</td>
+</tr>
+<tr>
+<td>Shell / Explorer integration with status overlays</td>
+<td>✗ <strong>declined</strong></td>
+<td>TortoiseGit (its whole point)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="history-graph-and-search">History, graph and search<a class="headerlink" href="#history-graph-and-search" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Branch-graph visualization with lanes</td>
+<td>✔</td>
+<td>all but GitHub Desktop</td>
+</tr>
+<tr>
+<td>Ref pills on commits</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Commit detail + changed files + per-file diff</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Search by message / author / hash / path / content</td>
+<td>✔</td>
+<td>Sublime Merge and Magit are the benchmarks</td>
+</tr>
+<tr>
+<td>Search shows <em>why</em> a commit matched</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Cancellable, budget-batched search</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Filter by branch / tag / ref</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Filter by date range / author</td>
+<td>✔ during the walk, so it composes</td>
+<td>Fork, SmartGit, Git Extensions</td>
+</tr>
+<tr>
+<td>Compare two refs (<code>..</code> vs <code>...</code>, labelled)</td>
+<td>✔</td>
+<td>the labelling is <strong>unique here</strong></td>
+</tr>
+<tr>
+<td>Write a patch from a comparison, in the reading on screen</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Ref typeahead, keyboard-navigable</td>
+<td>✔</td>
+<td>universal in the good clients</td>
+</tr>
+<tr>
+<td>Drag-and-drop on the graph</td>
+<td>✔ names the verb, writes nothing</td>
+<td>GitKraken, Tower, Fork, GitButler</td>
+</tr>
+<tr>
+<td>File history following renames</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Per-line blame</td>
+<td>✔</td>
+<td>universal except GitHub Desktop</td>
+</tr>
+<tr>
+<td>Visual file history / heatmap</td>
+<td>✔ a proportion, never a line number</td>
+<td>GitKraken 💰, GitLens 💰</td>
+</tr>
+<tr>
+<td><code>git bisect</code> from the UI</td>
+<td>✔ native, reads git's own state</td>
+<td>Fork, Git Extensions, TortoiseGit, Lazygit, Magit</td>
+</tr>
+<tr>
+<td>Reflog browser</td>
+<td>✔</td>
+<td>Tower, Fork, SmartGit, Magit, Lazygit</td>
+</tr>
+<tr>
+<td><code>git notes</code></td>
+<td>✔</td>
+<td>Magit</td>
+</tr>
+</tbody>
+</table>
+<h3 id="working-tree-staging-and-committing">Working tree, staging and committing<a class="headerlink" href="#working-tree-staging-and-committing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage / unstage file, hunk, line</td>
+<td>✔</td>
+<td>line level: Tower, Fork, Sublime Merge, SmartGit, Sourcetree, Lazygit, Magit</td>
+</tr>
+<tr>
+<td>Multi-select files for a verb</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Flat / tree file listing</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Discard file / hunk / line</td>
+<td>✔</td>
+<td>line-level discard is <strong>rarer</strong></td>
+</tr>
+<tr>
+<td>Delete untracked files</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Ignore a file, line shown before writing</td>
+<td>✔</td>
+<td>the "show the exact line" part is <strong>unique here</strong></td>
+</tr>
+<tr>
+<td>Amend HEAD</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Reword or edit an older commit outside a rebase</td>
+<td>✔ a one-row rebase, applied for you</td>
+<td>GitButler, Magit, Lazygit</td>
+</tr>
+<tr>
+<td>Co-author trailers</td>
+<td>✔</td>
+<td>GitHub Desktop, GitLens, Magit</td>
+</tr>
+<tr>
+<td><code>commit.template</code>, saying which file it came from</td>
+<td>✔</td>
+<td>Tower, SourceGit, Git Extensions, Magit</td>
+</tr>
+<tr>
+<td>Recall a recent commit message</td>
+<td>✔ from the preference <strong>and</strong> the log</td>
+<td>SourceGit, Git Extensions, Magit</td>
+</tr>
+<tr>
+<td>Subject inferred from the paths and the log, stating its basis</td>
+<td>✔</td>
+<td><strong>unique — every competitor's suggestion is AI, and states nothing</strong></td>
+</tr>
+<tr>
+<td>The inference and the generated draft <strong>side by side</strong></td>
+<td>✔</td>
+<td><strong>unique — everyone else ships one or the other</strong></td>
+</tr>
+<tr>
+<td>Conventional-commit vocabulary read from the repository</td>
+<td>✔ <code>commitlint</code> outranks the observed log</td>
+<td>elsewhere: linters refuse, they do not suggest</td>
+</tr>
+<tr>
+<td>Sign commits (GPG / SSH / X.509)</td>
+<td>✔ all three ‡</td>
+<td>everything commercial, plus most OSS</td>
+</tr>
+<tr>
+<td>Verify signatures in the log</td>
+<td>✔ four verdicts, lazy per row</td>
+<td>SmartGit, Git Extensions, TortoiseGit, Magit</td>
+</tr>
+<tr>
+<td>AI-generated commit message</td>
+<td>✔ reviewed, marked as generated, model named</td>
+<td>GitKraken 💰, Tower 💰, GitButler, SourceGit, GitLens 💰</td>
+</tr>
+<tr>
+<td><code>@ai</code> placeholder</td>
+<td>✔</td>
+<td>SmartGit</td>
+</tr>
+<tr>
+<td>Watch the working tree for external changes</td>
+<td>✔</td>
+<td>Sublime Merge, SmartGit; <strong>many require a manual refresh</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="diff-reading">Diff reading<a class="headerlink" href="#diff-reading" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unified and side-by-side</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Syntax highlighting in diffs</td>
+<td>✔</td>
+<td>Sublime Merge, Fork, GitKraken, SourceGit</td>
+</tr>
+<tr>
+<td>Intra-line / word-level marks</td>
+<td>✔</td>
+<td>Tower, Sublime Merge, SmartGit, Magit</td>
+</tr>
+<tr>
+<td>Likeness-based pairing of removals with additions</td>
+<td>✔</td>
+<td><strong>rare — most pair positionally</strong></td>
+</tr>
+<tr>
+<td>Ignore whitespace / blank lines</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Adjustable context</td>
+<td>✔</td>
+<td>Sublime Merge, Magit</td>
+</tr>
+<tr>
+<td>Virtualised rendering of huge diffs</td>
+<td>✔</td>
+<td>Sublime Merge; <strong>many clients stall here</strong></td>
+</tr>
+<tr>
+<td>Image diff (2-up, swipe, onion skin)</td>
+<td>✔ all three, remembered as a habit</td>
+<td>GitHub Desktop was the benchmark</td>
+</tr>
+<tr>
+<td>Binary change reported as a <em>kind</em></td>
+<td>✔</td>
+<td><strong>rare and correct</strong></td>
+</tr>
+<tr>
+<td>External diff / merge tool</td>
+<td>✔ read from git's own config first</td>
+<td>Sourcetree, SmartGit, Git Extensions, TortoiseGit, Fork</td>
+</tr>
+<tr>
+<td>Semantic / language-aware diff</td>
+<td>✗</td>
+<td>SmartGit (SemanticMerge)</td>
+</tr>
+<tr>
+<td>Permalink to file / selected lines</td>
+<td>✔</td>
+<td>GitLens, GitHub Desktop; <strong>rare</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="branching-merging-rebasing">Branching, merging, rebasing<a class="headerlink" href="#branching-merging-rebasing" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create / rename / delete / checkout branch</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Checkout with autostash, naming blocking files first</td>
+<td>✔</td>
+<td>the <em>naming</em> is <strong>rare</strong></td>
+</tr>
+<tr>
+<td>Set / clear upstream</td>
+<td>✔</td>
+<td>most</td>
+</tr>
+<tr>
+<td>Per-branch ahead/behind, merged, upstream-gone, age</td>
+<td>✔</td>
+<td>Tower, SmartGit; the four-fact row is <strong>stronger here</strong></td>
+</tr>
+<tr>
+<td>Merge with analysis, <code>--no-ff</code>, <code>--ff-only</code></td>
+<td>✔</td>
+<td>universal, though few report the analysis</td>
+</tr>
+<tr>
+<td>Three-way conflict resolution per hunk</td>
+<td>✔</td>
+<td>GitKraken 💰, Tower, Fork, Sublime Merge, SmartGit</td>
+</tr>
+<tr>
+<td>Interactive rebase, all six verbs</td>
+<td>✔</td>
+<td>GitKraken 💰, Tower, Fork, SmartGit, Git Extensions, Lazygit, Magit</td>
+</tr>
+<tr>
+<td>Rebase plan previewed before anything is written</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Stopped-operation state survives quitting</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Cherry-pick a commit or a range, committing or not</td>
+<td>✔</td>
+<td>universal (range + <code>-n</code> is rarer)</td>
+</tr>
+<tr>
+<td>Revert a commit / file / hunk / line</td>
+<td>✔</td>
+<td><strong>hunk and line are rare</strong></td>
+</tr>
+<tr>
+<td>Reset with a counted, named plan</td>
+<td>✔</td>
+<td>the plan naming files is <strong>rare</strong></td>
+</tr>
+<tr>
+<td>Detach HEAD and re-attach via HEAD's reflog</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Virtual / stacked branches</td>
+<td>~ stacked, not virtual</td>
+<td>GitButler (its whole thesis)</td>
+</tr>
+<tr>
+<td>git-flow branching model</td>
+<td>✔ six editable sequences, not a controller</td>
+<td>Tower, Fork, Sourcetree, SmartGit, Sublime Merge</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stash-worktrees-submodules">Stash, worktrees, submodules<a class="headerlink" href="#stash-worktrees-submodules" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stash push / pop / apply / drop / branch</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Stash only what is staged</td>
+<td>✔</td>
+<td><strong>rare — no libgit2 equivalent, assembled by hand</strong></td>
+</tr>
+<tr>
+<td>Rename / duplicate a stash, edit its contents</td>
+<td>✔</td>
+<td><strong>unique as far as this survey found</strong></td>
+</tr>
+<tr>
+<td>Restore individual files out of a stash</td>
+<td>✔</td>
+<td>rare</td>
+</tr>
+<tr>
+<td>Worktree list / add / remove / switch</td>
+<td>✔</td>
+<td>GitKraken 💰, Tower, Fork, SmartGit, SourceGit, Lazygit, Magit</td>
+</tr>
+<tr>
+<td>Submodule add / init / update / sync / set-url / deinit</td>
+<td>✔</td>
+<td>SmartGit is the benchmark; <strong>this is close</strong></td>
+</tr>
+<tr>
+<td>Subtree add / pull / push / split / remove</td>
+<td>✔</td>
+<td>Magit, Git Extensions; <strong>rare</strong></td>
+</tr>
+<tr>
+<td>Sparse checkout</td>
+<td>✔ cone mode ‡</td>
+<td>Magit</td>
+</tr>
+<tr>
+<td>Partial / shallow clone</td>
+<td>~ shallow yes; <strong>partial refused, by finding</strong></td>
+<td>SmartGit, Git Extensions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="remotes-and-transport">Remotes and transport<a class="headerlink" href="#remotes-and-transport" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Add / rename / set-url / remove remote</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Fetch with prune, progress, cancel</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Push, push with lease, plain force behind a dialog</td>
+<td>✔</td>
+<td>the three-verb split is <strong>more careful than most</strong></td>
+</tr>
+<tr>
+<td>Pull with ff-only / merge / rebase</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Clone with progress and cancel-cleanup</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Credentials: ssh-agent, explicit key, token</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Fetch, or fetch and prune, as a one-off choice</td>
+<td>✔</td>
+<td>most make prune a setting only</td>
+</tr>
+<tr>
+<td>Periodic background fetch, off by default</td>
+<td>✔</td>
+<td>GitKraken, Tower, Sourcetree, GitLens</td>
+</tr>
+<tr>
+<td>Keychain integration</td>
+<td>✔ optional backend, off by default ‡</td>
+<td>others persist unconditionally</td>
+</tr>
+<tr>
+<td>Git LFS: fetch, lock, pointer state</td>
+<td>✔ all three</td>
+<td>most of the commercial field</td>
+</tr>
+<tr>
+<td>One transport operation at a time, off the UI thread</td>
+<td>✔</td>
+<td>correctness detail most clients get wrong</td>
+</tr>
+</tbody>
+</table>
+<h3 id="forge-integration">Forge integration<a class="headerlink" href="#forge-integration" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List pull requests</td>
+<td>✔ 3 forges ‡</td>
+<td>Tower, SmartGit, GitKraken 💰 cover 4</td>
+</tr>
+<tr>
+<td>Open a pull request from the app</td>
+<td>✔</td>
+<td>most</td>
+</tr>
+<tr>
+<td>Read the proposal's diff, files and commits</td>
+<td>✔</td>
+<td>GitKraken 💰, Tower, SmartGit</td>
+</tr>
+<tr>
+<td>Write a review: line comments, verdict, submit</td>
+<td>✔</td>
+<td>SmartGit, Tower, GitKraken 💰; <strong>strong here</strong></td>
+</tr>
+<tr>
+<td>Local, persisted review draft</td>
+<td>✔</td>
+<td><strong>unique — everyone else drafts server-side</strong></td>
+</tr>
+<tr>
+<td>A forge-held pending review visible in the diff, marked unsent</td>
+<td>✔</td>
+<td><strong>rare</strong></td>
+</tr>
+<tr>
+<td>Discard a pending review on the forge as well as here</td>
+<td>✔ forge first, local only if it went</td>
+<td>most send you to the browser</td>
+</tr>
+<tr>
+<td>Request reviewers / add labels when proposing</td>
+<td>✔</td>
+<td>most</td>
+</tr>
+<tr>
+<td>CI check runs for the current commit</td>
+<td>✔</td>
+<td>GitHub Desktop, GitKraken 💰</td>
+</tr>
+<tr>
+<td>Workflow runs, jobs and steps drill-in</td>
+<td>✔</td>
+<td><strong>rare outside the forge's own web UI</strong></td>
+</tr>
+<tr>
+<td>Saved, composable filter vocabulary</td>
+<td>✔</td>
+<td><strong>unique</strong></td>
+</tr>
+<tr>
+<td>Waiting-too-long flags</td>
+<td>✔</td>
+<td><strong>unique</strong></td>
+</tr>
+<tr>
+<td>Offline persistence, labelled with read time</td>
+<td>✔</td>
+<td><strong>rare and honest</strong></td>
+</tr>
+<tr>
+<td>GitLab / Bitbucket / Azure DevOps</td>
+<td>✔ GitLab, Bitbucket ‡; <strong>no Azure</strong></td>
+<td>Tower, SmartGit, GitKraken 💰</td>
+</tr>
+<tr>
+<td>Self-hosted / Enterprise instances</td>
+<td>✔ per-host base URL ‡</td>
+<td>GitKraken 💰, Tower, SmartGit</td>
+</tr>
+<tr>
+<td>Issue tracker integration</td>
+<td>✔ read and written: GitHub Issues, Jira, Linear ‡</td>
+<td>GitKraken 💰, Sourcetree, Magit/Forge, GitLens 💰</td>
+</tr>
+<tr>
+<td>Distributed review stored in the repository</td>
+<td>✗</td>
+<td>SmartGit 💰 add-on (unique to them)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="automation-extension-environment">Automation, extension, environment<a class="headerlink" href="#automation-extension-environment" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Here</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Command palette</td>
+<td>✔</td>
+<td>Sublime Merge, GitLens, Magit, Lazygit</td>
+</tr>
+<tr>
+<td>Two-press keyboard hint overlay, usage-ranked</td>
+<td>✔</td>
+<td><strong>unique</strong></td>
+</tr>
+<tr>
+<td>Repository switcher on a held modifier</td>
+<td>✔</td>
+<td>rare</td>
+</tr>
+<tr>
+<td>Back / forward navigation history</td>
+<td>✔ ← / → , plus a two-finger swipe on macOS</td>
+<td>rare</td>
+</tr>
+<tr>
+<td>A truncated label carries the whole of its text</td>
+<td>✔ keyed on whether it is <em>actually</em> truncated</td>
+<td>universal in principle; <strong>routinely missed</strong></td>
+</tr>
+<tr>
+<td>Named sequences of the app's own verbs</td>
+<td>✔</td>
+<td>Tower/Sourcetree custom actions are shell-based</td>
+</tr>
+<tr>
+<td>Arbitrary custom shell commands</td>
+<td>✔ a template, argument list, never a shell</td>
+<td>Sourcetree, SmartGit, Fork, Lazygit, Git Extensions</td>
+</tr>
+<tr>
+<td>Plugin / scripting API</td>
+<td>✗</td>
+<td>Sublime Merge, Git Extensions, Magit, GitLens</td>
+</tr>
+<tr>
+<td>Hook management</td>
+<td>✔</td>
+<td><strong>rare — TortoiseGit and little else</strong></td>
+</tr>
+<tr>
+<td>Show the equivalent git command line</td>
+<td>✔</td>
+<td>Sublime Merge; <strong>rare and a genuine differentiator</strong></td>
+</tr>
+<tr>
+<td>Operations log with typed, honest undo</td>
+<td>✔</td>
+<td><strong>unique in its refusals</strong></td>
+</tr>
+<tr>
+<td>Working-tree backups before destructive writes</td>
+<td>✔</td>
+<td>GitButler snapshots; <strong>rare</strong></td>
+</tr>
+<tr>
+<td>Open in editor / terminal / file manager</td>
+<td>✔</td>
+<td>universal</td>
+</tr>
+<tr>
+<td>Embedded terminal</td>
+<td>✗ <strong>declined</strong></td>
+<td>GitKraken, Sublime Merge, Lazygit</td>
+</tr>
+<tr>
+<td>Multiple themes, verified contrast</td>
+<td>✔</td>
+<td>Sublime Merge; contrast <strong>verification</strong> is unique</td>
+</tr>
+<tr>
+<td>Localisation</td>
+<td>✔ (fr, partial)</td>
+<td>Git Extensions, TortoiseGit, SourceGit, GitLens</td>
+</tr>
+<tr>
+<td>Repository metrics / DORA / team insights</td>
+<td>✔</td>
+<td><strong>unique at this depth</strong></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Source-available under the PolyForm Noncommercial License 1.0.0. Commercial use requires a paid licence.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/source-manager/app" target="_blank" rel="noopener" title="source-manager on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.indexes", "content.action.edit", "content.code.copy", "content.tooltips", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

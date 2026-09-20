@@ -1,0 +1,2613 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A desktop GUI for viewing and managing Git repositories, on macOS, Linux and Windows. Built with Qt/QML and libgit2.">
+      
+      
+        <meta name="author" content="pasdam">
+      
+      
+        <link rel="canonical" href="https://source-manager.github.io/docs/features/forge/">
+      
+      
+        <link rel="prev" href="../bisect/">
+      
+      
+        <link rel="next" href="../reviewing/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Pull requests and CI - source-manager</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pull-requests-and-ci" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="source-manager" class="md-header__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            source-manager
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pull requests and CI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="source-manager" class="md-nav__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    source-manager
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/tour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A tour of the window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/keyboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyboard and the palette
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fleet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The fleet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes and staging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commit-messages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing a commit message
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diffs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reading a diff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History, graph and search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splitting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splitting a branch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extracting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taking pieces out of a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rewriting-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting history
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merging-conflicts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Merging and conflicts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags-and-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tags and notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stash-worktrees-submodules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stash, worktrees, submodules, subtrees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remotes-transport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remotes and transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git LFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bisect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bisect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pull requests and CI
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests and CI
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-app-may-write-in-one-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the app may write, in one list
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#every-state-is-a-state-not-an-empty-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Every state is a state, not an empty list
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-token-is-read-never-kept-if-it-can-be-helped" class="md-nav__link">
+    <span class="md-ellipsis">
+      A token is read, never kept if it can be helped
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A token is read, never kept if it can be helped">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signing-in-through-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signing in through the browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaring-a-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaring a host
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-kept-and-asking-again-is-a-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is kept, and asking again is a decision
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-proposal-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      The proposal list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The proposal list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-row-before-it-is-opened" class="md-nav__link">
+    <span class="md-ellipsis">
+      A row before it is opened
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filters-are-a-vocabulary-not-four-chips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filters are a vocabulary, not four chips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filters are a vocabulary, not four chips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-review-fields-that-are-each-half-of-a-qualifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two review fields that are each half of a qualifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-things-worth-knowing-about-the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other things worth knowing about the vocabulary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-list-was-short-and-there-were-three-reasons" class="md-nav__link">
+    <span class="md-ellipsis">
+      The list was short, and there were three reasons
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-strip-along-the-foot-of-the-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      The strip along the foot of the window
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-proposals-have-been-waiting-too-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which proposals have been waiting too long
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-has-two-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI has two questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposing-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposing one
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposing one">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-template-a-proposal-starts-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      The template a proposal starts from
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-link-somebody-else-can-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      A link somebody else can open
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-ticket-id-and-the-page-it-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      A ticket id, and the page it names
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#somebody-elses-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Somebody else's Markdown
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reviewing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewing a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tickets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Asking a model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repository metrics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation and external tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Undo, backups and the log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the git directory is made of
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../comparison/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Comparison
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Comparison
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The feature matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/pricing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the field charges for
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../roadmap/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Closed as decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/non-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deliberate non-goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licensing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Licensing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../development/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/building/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/releasing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releasing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    These docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-app-may-write-in-one-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      What the app may write, in one list
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#every-state-is-a-state-not-an-empty-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Every state is a state, not an empty list
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-token-is-read-never-kept-if-it-can-be-helped" class="md-nav__link">
+    <span class="md-ellipsis">
+      A token is read, never kept if it can be helped
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A token is read, never kept if it can be helped">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#signing-in-through-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Signing in through the browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaring-a-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaring a host
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-kept-and-asking-again-is-a-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is kept, and asking again is a decision
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-proposal-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      The proposal list
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The proposal list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-row-before-it-is-opened" class="md-nav__link">
+    <span class="md-ellipsis">
+      A row before it is opened
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filters-are-a-vocabulary-not-four-chips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Filters are a vocabulary, not four chips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filters are a vocabulary, not four chips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-review-fields-that-are-each-half-of-a-qualifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two review fields that are each half of a qualifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-things-worth-knowing-about-the-vocabulary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other things worth knowing about the vocabulary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-list-was-short-and-there-were-three-reasons" class="md-nav__link">
+    <span class="md-ellipsis">
+      The list was short, and there were three reasons
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-strip-along-the-foot-of-the-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      The strip along the foot of the window
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#which-proposals-have-been-waiting-too-long" class="md-nav__link">
+    <span class="md-ellipsis">
+      Which proposals have been waiting too long
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ci-has-two-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI has two questions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposing-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proposing one
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposing one">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-template-a-proposal-starts-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      The template a proposal starts from
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-link-somebody-else-can-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      A link somebody else can open
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-ticket-id-and-the-page-it-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      A ticket id, and the page it names
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#somebody-elses-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      Somebody else's Markdown
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/source-manager/app/edit/main/docs/features/forge.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="pull-requests-and-ci">Pull requests and CI<a class="headerlink" href="#pull-requests-and-ci" title="Permanent link">&para;</a></h1>
+<p><strong>Licensing — Paid.</strong> Reading is <code>forge</code>; proposing, reviewing and labelling are <code>forge-write</code>; GitLab and Bitbucket are <code>forge-providers</code>; permalinks are <code>forge-links</code>; writing while the forge is unreachable is <code>offline-comments</code>. <a href="../../licensing/">What a licence adds</a></p>
+<p>Pull requests, reviews and CI results come from whichever forge hosts the remote, behind a
+provider seam the interface never looks past.</p>
+<table>
+<thead>
+<tr>
+<th>Forge</th>
+<th>Reads</th>
+<th>Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>everything</td>
+<td>proposals, reviews, comments, labels, reviewers, repositories</td>
+</tr>
+<tr>
+<td><strong>GitLab</strong> ‡</td>
+<td>everything but check runs and a review decision</td>
+<td>proposals, reviews, comments</td>
+</tr>
+<tr>
+<td><strong>Bitbucket Cloud</strong> ‡</td>
+<td>everything but per-file patches</td>
+<td><strong>nothing</strong></td>
+</tr>
+</tbody>
+</table>
+<p>‡ Fixture-proved and never live-proved: the tests pin the URLs built, the JSON mapped onto
+the documented fields, the errors told apart and what the transport will and will not let
+through. No live instance has ever answered.</p>
+<p><strong>Self-hosted instances work</strong>, including GitHub Enterprise, GitLab on your own machine —
+see <a href="#declaring-a-host">declaring a host</a>.</p>
+<p><strong>None of this is git transport.</strong> Moving objects is a different protocol with a different
+credential, and nothing on these two surfaces fetches, pushes or pulls anything.</p>
+<h2 id="what-the-app-may-write-in-one-list">What the app may write, in one list<a class="headerlink" href="#what-the-app-may-write-in-one-list" title="Permanent link">&para;</a></h2>
+<p>Ten endpoints, spelled out in one array in the transport, and a provider cannot add one:</p>
+<ul>
+<li>Submit a review, and send one that was already begun</li>
+<li>Comment on a line, and take that comment back</li>
+<li>Append a comment to the review being written, and throw that review away unsent</li>
+<li>Open a proposal, ask for a review, put labels on it</li>
+<li>Create a repository under the signed-in account</li>
+</ul>
+<p><strong>There is no <code>PATCH</code> and no <code>PUT</code>.</strong> So nothing retitles, re-bases, closes or merges a
+proposal; nothing dismisses somebody else's review or rewrites the body of one; and nothing
+<em>replaces</em> the reviewer or label set somebody else chose — a POST on the labels path <strong>adds</strong>
+where the PUT on the same path would replace.</p>
+<p><strong>No read path writes at all</strong>, and that is asserted rather than promised: a test drives
+every read there is — both diff readings, a re-read, both refreshes, a whitespace switch —
+with a draft open the whole time, and requires the write log to come back empty.</p>
+<p><strong>Nothing writes without a user action.</strong> Nothing on a refresh, nothing on a timer, nothing
+as a side effect of reading.</p>
+<details class="note">
+<summary>The one row that names no operation</summary>
+<p>Nine rows name one operation each: read the pattern and you know what may happen.
+<code>POST /graphql</code> is a single URL behind which every mutation GitHub has lives, and which
+of them a request performs is decided by a body nothing in the list inspects — so for
+that row, "what may this app write is answerable by reading one array" is <strong>false</strong>, and
+no arrangement of the array makes it true again.</p>
+<p>It is there because the review being written moved onto the forge and REST cannot append
+a comment to a pending review. The alternatives were a delete-and-recreate on every
+keystroke, or keeping the draft local. What stands in the guarantee's place is narrower
+and asserted rather than promised: exactly <strong>one</strong> mutation is spelled in this app, from
+a fixed template with its arguments as typed GraphQL variables rather than text spliced
+into a query, and it is sent only from a control somebody pressed.</p>
+<p>A GraphQL <strong>read</strong> — the review decision, and the id lookup — goes down its own channel
+with its own allow-list, and the document is <em>checked</em>: it must be a JSON object whose
+query begins with the <code>query</code> keyword, carrying no operation name, and containing the
+word <code>mutation</code> nowhere at all. So the one thing the write row cannot promise about
+itself, that channel does.</p>
+</details>
+<h2 id="every-state-is-a-state-not-an-empty-list">Every state is a state, not an empty list<a class="headerlink" href="#every-state-is-a-state-not-an-empty-list" title="Permanent link">&para;</a></h2>
+<p><code>no-repo</code>, <code>unsupported</code>, <code>unconfigured</code>, <code>idle</code>, <code>loading</code>, <code>ready</code>, <code>failed</code> — and the
+surface renders the ones that are not a list.</p>
+<p><strong>An empty list is only ever allowed to mean "this repository has none."</strong> Rendering "no
+token" or "the forge said no" the same way is how a network feature earns its reputation for
+lying.</p>
+<p>A forge that cannot answer a question <strong>refuses with a sentence</strong> rather than an empty list.
+GitLab has no per-commit check concept, so check runs there is <code>Unsupported</code> with a sentence
+naming the Runs page — that repository's <em>pipelines</em> work perfectly.</p>
+<h2 id="a-token-is-read-never-kept-if-it-can-be-helped">A token is read, never kept if it can be helped<a class="headerlink" href="#a-token-is-read-never-kept-if-it-can-be-helped" title="Permanent link">&para;</a></h2>
+<p><code>GH_TOKEN</code>, then <code>GITHUB_TOKEN</code>, then <code>gh auth token</code> (asynchronously, and only once a
+surface asks, so an app never pointed at a forge never shells out), then a token typed into
+the app.</p>
+<p>That last one lives in the settings file <strong>in plain text and the surface says so in as many
+words</strong>, because somebody choosing it deserves to know before rather than after. No token is
+logged and none reaches an error message.</p>
+<p><strong>With no token nothing is requested at all</strong>, since an unauthenticated call to a public
+repository works and then stops, mid-session, at sixty requests an hour.</p>
+<h3 id="signing-in-through-the-browser">Signing in through the browser<a class="headerlink" href="#signing-in-through-the-browser" title="Permanent link">&para;</a></h3>
+<p>The OAuth device flow — the only mechanism a desktop app can honestly use, since an
+authorisation-code flow needs either a client secret it cannot keep or a loopback socket it
+cannot count on. It honours the server's polling interval and <em>keeps</em> a raised one.</p>
+<p><strong>This build ships no client id</strong>, because one belongs to whoever registered it. Register an
+OAuth app, enable device flow, and supply the id through an environment variable or the field
+the panel offers — "no client id" is a first-class state with instructions, exactly as "no
+token" is.</p>
+<p>The granted token joins the same order and lands in the same unencrypted settings a pasted
+one does. <strong>The browser removes the copying, not the storage.</strong></p>
+<h3 id="declaring-a-host">Declaring a host<a class="headerlink" href="#declaring-a-host" title="Permanent link">&para;</a></h3>
+<p>A host resolves to an <em>instance</em> — which software is there, and where its endpoints are —
+rather than straight to a class. That is what makes GitHub Enterprise and a private GitLab
+work: the same class, against <code>&lt;host&gt;/api/v3</code>.</p>
+<p>Four things about it are load-bearing:</p>
+<ul>
+<li><strong>The URLs are derived from the host, never typed.</strong> You declare a host and which software
+  runs there — the two facts nothing in a remote URL can say — and the rest is worked out.
+  Three fields would let somebody point the API at one machine and the browser links at
+  another, which is a phishing shape rather than a configuration.</li>
+<li><strong>The write allow-list is derived rather than written out.</strong> Declaring a host widens where
+  this app may send a body, which is exactly what declaring one is for — and the
+  <strong>operations</strong> are still fixed: nothing typed into a settings page adds a verb, changes a
+  method, or reaches a path no provider was written against.</li>
+<li><strong>Everything that is not a bare host name is refused rather than repaired.</strong> A scheme, a
+  port, a path, userinfo, a wildcard: each is a way to make one URL look like another once
+  it reaches a derived pattern. A <strong>stored</strong> row is vetted on the way in exactly as hard as
+  a typed one and dropped rather than fixed up, because the settings file is text somebody
+  can edit and this is the one setting that widens where a credential may be sent.</li>
+<li><strong>The sign-in panel says which instance is in force</strong>, above everything and not optionally.
+  What is about to be pasted is a credential, and "Sign in with GitLab" drawn over somebody's
+  private instance is the one sentence that panel must not print.</li>
+</ul>
+<p>Declaring a host lives on the sign-in panel rather than the settings page for that reason: it
+is the one control in the app that widens where a credential may be sent, and the panel that
+hands the credential over is where that belongs.</p>
+<h2 id="what-is-kept-and-asking-again-is-a-decision">What is kept, and asking again is a decision<a class="headerlink" href="#what-is-kept-and-asking-again-is-a-decision" title="Permanent link">&para;</a></h2>
+<p>Every answer goes into a cache under a key naming the <strong>question</strong> — <code>pulls:owner/name</code>,
+<code>checks:owner/name@&lt;sha&gt;</code>, <code>detail:owner/name#12</code> — which is what makes the two verbs
+different:</p>
+<ul>
+<li><strong>Load</strong> serves what is held and fetches only when nothing is.</li>
+<li><strong>Refresh</strong> means spend a request now, which is what Reload does.</li>
+</ul>
+<p>The slug is in every key, so switching repository invalidates nothing and coming back is
+free; the <strong>commit</strong> is in the checks key because HEAD moving asks a <em>different</em> question
+rather than staling the old answer.</p>
+<p>On GitHub a refresh is cheap as well as explicit: a conditional request earns a 304 that does
+not count against the rate limit — and a tag is kept only for an answer that arrived in <strong>one
+page</strong>, since it identifies one URL and a list assembled from three is not revalidated by the
+first being unchanged.</p>
+<p><strong>Answers outlive the process</strong>, in a database beside the settings, and a stored list is
+served <strong>labelled and refreshing</strong>: "stored, read 14h ago · refreshing". Serving one spends
+the request that will replace it, so the screen is instant and converges without anybody
+waiting in front of a blank one. What was never acceptable is a stored list wearing a live
+one's face, and that is a different thing from serving one that admits what it is.</p>
+<p><strong>A failed refresh keeps what it failed to replace.</strong> The state stays <code>ready</code> and the refusal
+is drawn beside the list rather than instead of it, because "showing what was read yesterday,
+and today's attempt failed" is a state, and a more useful one than an empty frame with a red
+box in it. That is also why a missing token no longer folds a list already on screen into
+"unconfigured": signing out should stop the fetching, not erase the reading.</p>
+<p><strong>Signing out is a hard forget</strong> — memory and disk both — because a private repository's
+proposals sitting on disk after the account that read them was forgotten is exactly what
+somebody pressing that button is asking not to happen. It forgets <em>answers</em>: there is no
+column a token could occupy, and a test reads the file's bytes back.</p>
+<p><strong>A repository leaving the fleet takes its rows with it</strong>, by both path and slug: the path is
+exact and survives the directory's deletion, the slug catches what a second checkout of the
+same project overwrote the path of.</p>
+<h2 id="the-proposal-list">The proposal list<a class="headerlink" href="#the-proposal-list" title="Permanent link">&para;</a></h2>
+<p>Number, title, author, state, branches, labels and awaited reviewers draw immediately;
+selecting one adds the description, the counts and the assignees; two more requests add the
+files and the reviews. Each wave has its own state, so the panel draws what it holds and says
+what is still coming. Commits are a fourth request spent only when asked for.</p>
+<h3 id="a-row-before-it-is-opened">A row before it is opened<a class="headerlink" href="#a-row-before-it-is-opened" title="Permanent link">&para;</a></h3>
+<p><strong>The state is on the number</strong>, in the four hues every forge's own web UI uses — green open,
+grey draft, the accent for merged, the failure hue for closed-without-merging. Somebody who
+has read a proposal list before does not have to learn this, and the tooltip names the state
+in the forge's own word, which is the only thing separating merged from closed for the one
+person in twelve who cannot separate the hues.</p>
+<p>Which of the four it is comes out of <strong>three fields, and the order they are asked in is
+load-bearing</strong>: <code>state</code> is only ever "open" or "closed", a merge is a closed one with a
+timestamp, and a draft is a <em>flag</em>. GitHub leaves <code>draft</code> set on one that was <strong>closed while
+still a draft</strong>, so asking about the flag first filed an abandoned draft as a draft — drawn
+in the grey that means "not finished yet", filed under the Open chip, and counted as open by
+the waits reading, which then flagged it for having waited months on a decision that had been
+taken.</p>
+<p><strong>The size is a band</strong>, not a figure. Five bands over four colours: XS and S share one,
+because "small enough to read now" is a single answer; L and XL do not, because that is
+exactly the pair somebody is choosing between when deciding what to pick up before lunch.</p>
+<p>The size genuinely is not in a list — a forge fills the counts only when one proposal is asked
+about by name, so "a size on every row" <em>is</em> a request per row. They are spent lazily as rows
+scroll past, capped at thirty per list and never without a token, and the answer lands under
+the same key the panel and the metrics sample already use, so a proposal is bought once ever
+including across launches.</p>
+<p><strong>The state matters as much as the figure</strong>: a blank column reads as "this proposal has no
+size", which is the one thing it never means, so a row draws a figure, an ellipsis or an em
+dash — with a sentence under the list, once the ceiling is actually reached, saying why the
+dashes are there. A ceiling nobody can see is indistinguishable from a bug, and this one is
+reached by <em>scrolling</em>, which is exactly the gesture that would make somebody wonder.</p>
+<p>The row bands the forge's <strong>raw</strong> total and the panel bands a <em>counted</em> one — with lockfiles
+and vendored directories set aside — so the two legitimately disagree about which letter a
+proposal earns. What they must never disagree about is what L <em>means</em>, which is why one
+component draws both. The tooltip says which arithmetic this is and that opening the proposal
+buys the other.</p>
+<p><strong>Labels arrive with the list and were simply never drawn</strong>, which is the odder gap of the
+two, because the search box and the whole filter vocabulary already match on them. They are
+capped at two with the rest counted: a repository whose convention is eight labels a proposal
+would otherwise push the author and the branch off the end of the line, and those are the two
+facts that tell two similarly-titled rows apart.</p>
+<h3 id="sorting">Sorting<a class="headerlink" href="#sorting" title="Permanent link">&para;</a></h3>
+<p>By <strong>creation</strong> or by update, created by default because it is the only one of the two that is
+stable: ordering by update time alone reorders the page under you while you are reading it,
+and a row that was third yesterday is fifteenth today for reasons nothing on screen shows.</p>
+<p>It is remembered, and the chips are drawn as their own labelled pair rather than beside the
+filter chips — a filter decides <em>which</em> proposals are here and a sort decides where each one
+sits, and one row of identical chips would make the exclusive-group rule read as covering
+both.</p>
+<h2 id="filters-are-a-vocabulary-not-four-chips">Filters are a vocabulary, not four chips<a class="headerlink" href="#filters-are-a-vocabulary-not-four-chips" title="Permanent link">&para;</a></h2>
+<p>A filter is a name and a list of conditions over the documented fields, all of which must
+hold. The four state chips are built-in filters in that same vocabulary, differing only in
+being code and in declaring an exclusive group.</p>
+<p><strong>A filter's definition travels everywhere its name does</strong>, because a filter is named by its
+author and a name is a claim. Everything is evaluated over what was already fetched, so the
+surface says when the fetch stopped at the provider's ceiling — "3 match" must never read as
+"3 in this repository".</p>
+<h3 id="two-review-fields-that-are-each-half-of-a-qualifier">Two review fields that are each half of a qualifier<a class="headerlink" href="#two-review-fields-that-are-each-half-of-a-qualifier" title="Permanent link">&para;</a></h3>
+<p>This is the part of the vocabulary that was reported three times, and each report was about a
+different half:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What it is</th>
+<th>Wrong about</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>awaited reviewers</strong></td>
+<td>The forge's <code>review-requested:</code> — who is on the hook <em>right now</em></td>
+<td>A forge drops somebody the moment they answer, so a proposal whose reviewer objected has an empty list and is still owed a review. Lists <strong>fewer</strong> rows</td>
+</tr>
+<tr>
+<td><strong>Merging requires a review</strong></td>
+<td>The base branch's protection</td>
+<td>Knows nothing about approvals, so a proposal already approved still demands one. Lists <strong>more</strong></td>
+</tr>
+<tr>
+<td><strong>Review outcome so far</strong></td>
+<td>The forge's own decision — <code>required</code>, <code>approved</code>, <code>changes-requested</code>, <code>none</code>, <code>unknown</code></td>
+<td>Only the forge can put the two together</td>
+</tr>
+</tbody>
+</table>
+<p>The labels are the third fix. "A review is required", offered beside a "Review decision"
+whose values include <code>required</code>, reads as two spellings of one thing — and somebody who picks
+the wrong one gets a list that is right and unexplained. Each one's caveat now points at the
+other, and the pair is asserted against the <em>labels</em> rather than against literals, so a
+rewording cannot leave two sentences naming fields that no longer exist.</p>
+<p><code>unknown</code> is a real answer and a common one: reading branch protection needs admin rights on
+some repositories and a forge answers 404 both for a branch with no protection and for a token
+that cannot see the protection it has. Reporting it as "no" would quietly drop every proposal
+on a repository you merely lack a scope for.</p>
+<p>The decision costs <strong>one round trip for the whole list</strong> — which is why it exists at all, a
+field on every row not being buyable a request per proposal — and only the <em>open</em> proposals
+are asked about, that being the only state the question means anything in.</p>
+<h3 id="other-things-worth-knowing-about-the-vocabulary">Other things worth knowing about the vocabulary<a class="headerlink" href="#other-things-worth-knowing-about-the-vocabulary" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>@me</code> resolves at match time</strong>, and a saved filter keeps the <em>word</em> rather than the name,
+  so the same filter means the right thing under a second account. An <strong>empty</strong> login matches
+  <strong>nothing</strong>, including under the negative operators — <code>not @me</code> with nobody known would be
+  "not nobody", which is everything.</li>
+<li><strong><code>state anyOf open</code> excludes drafts</strong>, which is the vocabulary rather than an accident: a
+  draft's state is <code>draft</code>, so this clause is the forge's <code>is:open draft:false</code>. A filter
+  wanting both says <code>state anyOf open, draft</code>.</li>
+<li><strong>"Someone is awaited" counts teams</strong>, and naming a login matches people only. A review
+  asked of a team and nobody else is a proposal with somebody awaited, but putting a team in
+  the people list would make "waiting on kate" quietly true of a proposal awaiting a team kate
+  happens to be in.</li>
+<li><strong>The whole vocabulary is documented in the editor</strong> — every field carries one line saying
+  what it <em>is</em>, in a glossary fold beside "Add condition", plus the longer caveat printed
+  under the conditions when that field is in use. Two separate strings on purpose: a glossary
+  of paragraphs is not scanned, and a warning buried among a dozen definitions is not read.</li>
+<li><strong>A saved filter and a state chip are exclusive</strong>, and two saved filters are not. A saved
+  filter is a <em>complete question</em> in a vocabulary that already contains <code>state</code>, so leaving
+  Open lit beside it ands in a condition its author did not write — and a saved filter that
+  "finds nothing" because of the chip nobody looked at is the commonest way one appears
+  broken. Turning off the last thing in force falls back to <strong>All</strong> rather than Open.</li>
+<li><strong>A typed query is not a filter.</strong> Three characters you are holding in your head for ten
+  seconds live on the surface rather than in the vocabulary, and both hold at once. It is
+  <strong>reset when the surface is built</strong>, unlike the filters: a list narrowed by a query nothing
+  on screen is showing would be a bug rather than a choice.</li>
+</ul>
+<h3 id="the-list-was-short-and-there-were-three-reasons">The list was short, and there were three reasons<a class="headerlink" href="#the-list-was-short-and-there-were-three-reasons" title="Permanent link">&para;</a></h3>
+<p>Worth recording because the fix took three passes:</p>
+<ol>
+<li><strong>Teams were dropped</strong> from the awaited list, so on a repository whose convention is review
+   teams that was most of the rows.</li>
+<li><strong>The window was full of closed proposals</strong> — the list is bounded at five pages, and that
+   ceiling is reached by <em>merged</em> ones, so an open proposal nobody had touched in a month was
+   not in the data any filter ran over. The open ones are fetched on their own now, sorted by
+   creation ascending because that pass exists to be exhaustive.</li>
+<li><strong><code>review:required</code> is not the awaited list</strong>, which is the part no amount of fixing a
+   clause could reach — see the table above.</li>
+</ol>
+<h2 id="the-strip-along-the-foot-of-the-window">The strip along the foot of the window<a class="headerlink" href="#the-strip-along-the-foot-of-the-window" title="Permanent link">&para;</a></h2>
+<p>A saved question is worth more than the page it was written on, so it earns three routes: a
+count on its tab's badge, a <strong>watch</strong>, and a chip on the strip along the foot of the window —
+which is drawn on <strong>every</strong> surface, so a count you want in the corner of your eye survives
+walking to Changes, to History, to the fleet and to Settings.</p>
+<p>A widget there is a filter and a kind — a proposal question, a CI question or a
+<a href="../tickets/">ticket</a> question — so a chip is the filter answering for itself. Pressing one
+goes to that list with that filter in force.</p>
+<p><strong>Nothing on the strip fetches.</strong> A list this window has not read draws <code>—</code> and never <code>0</code>: a
+zero is a claim that there is nothing, and the strip is the last place that should be guessed
+at. The counts follow each list's own change signal, so they move when the page they belong to
+is read.</p>
+<p>The strip is <strong>absent until you add a chip</strong>, kept per checkout in <code>.git/config</code>, and the order
+you put them in is the order they are drawn in. A chip whose filter has since been deleted is
+<strong>kept and says so</strong>, rather than vanishing with the question it was asking.</p>
+<h2 id="which-proposals-have-been-waiting-too-long">Which proposals have been waiting too long<a class="headerlink" href="#which-proposals-have-been-waiting-too-long" title="Permanent link">&para;</a></h2>
+<p>Three readings rather than one "stale" flag, because the three ways a proposal gets stuck have
+different people on the hook:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>open</strong></td>
+<td>Opened, and still open</td>
+</tr>
+<tr>
+<td><strong>approval</strong></td>
+<td>Open, and nobody has approved it</td>
+</tr>
+<tr>
+<td><strong>merge</strong></td>
+<td>Open, approved, and still not merged</td>
+</tr>
+</tbody>
+</table>
+<p>Collapsing them would report one figure to the reviewer who has not looked, the author who has
+not merged, and nobody in particular — which is how a badge comes to be ignored.</p>
+<p><strong>Mode and value are per reading.</strong> The values are on different scales — a fortnight open is
+ordinary and a fortnight approved-and-unmerged is not — and the <em>mode</em> does not transfer:
+"above the team average" is a meaningful reading of review latency and nearly meaningless of
+"open too long", where a mean is dragged by whichever proposal somebody abandoned.</p>
+<p>In average mode the value is a <strong>multiple of the mean</strong>, defaulting to 1.5 rather than 1.0,
+because these distributions are right-skewed and a mark that fires on a third of the rows is
+decoration. <strong>Below eight observations the average mode does not answer</strong> — not a statistical
+threshold, there being no honest one for a mean over whatever the forge last changed, but the
+point at which one abandoned proposal stops being a quarter of the answer.</p>
+<p>The two review-based readings can only be computed for a proposal whose reviews this app
+happens to hold, so such a row is <strong><code>unjudged</code>, drawn as <code>?</code>, and counted separately</strong> — which
+is also why those two are <strong>off by default</strong>: switching one on is the moment somebody accepts
+a column that mostly says "not read yet", where the <code>open</code> reading needs only the list.</p>
+<p>A row draws <strong>one</strong> mark and the most actionable wait wins — merge, then approval, then open —
+because a proposal that is agreed and sitting there needs one press from somebody already
+convinced. Colour says only <em>look at this</em>, and the four glyphs carry which.</p>
+<p><strong>Nothing here costs a request</strong>: the verdicts are recomputed over the list in memory and the
+reviews already held.</p>
+<h2 id="ci-has-two-questions">CI has two questions<a class="headerlink" href="#ci-has-two-questions" title="Permanent link">&para;</a></h2>
+<p>Neither list answers the other, and the sentence under the chips saying which is on screen is
+the load-bearing part — the two lists look alike, and somebody who takes one for the other
+will conclude their own commit passed on the strength of somebody else's push.</p>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Runs</strong></td>
+<td>What the forge's own CI has been <strong>doing</strong> — a run of a workflow, on a branch, with an event behind it, holding jobs holding steps</td>
+</tr>
+<tr>
+<td><strong>Jobs</strong></td>
+<td>What <em>any</em> CI reported against <strong>one commit</strong> — the honest question, and the only reading that works for a repository built by something that is not the forge's own CI</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Runs is the page that opens</strong>, which reverses what this surface used to do. The old default
+was the reading keyed to what is checked out; the trouble with it is that a commit's checks are
+empty far more often than CI is idle — nothing is pushed yet, the fetch is stale, the work is
+on a branch the forge has not seen — so the page opened on a blank list on a repository whose
+CI had run forty times that week.</p>
+<p>The keys differ in what they carry, and that is the whole design: the checks key moves with
+HEAD and the runs key does not, so committing re-asks one and leaves the other alone.</p>
+<p><strong>Jobs are one request per run</strong>, bought when a run is <em>opened</em> and never for the list — and
+served outright rather than served-and-refreshed, which is the one place in this layer that is
+right: a finished run is immutable, and asking again would spend a request to confirm something
+that cannot have changed.</p>
+<p>A run is <strong>opened rather than unfolded</strong>. In-place expansion works for the two or three jobs of
+an ordinary build and stops working exactly where you need it: a matrix build is twenty rows
+pushed in under one, and the list you were reading has lost its place.</p>
+<p><strong>A verdict is a colour and a shape</strong>, and the palette is broken here on purpose — everything
+else in the app is one accent and a neutral ramp, because "is anything broken" is the entire
+question this tab is opened with and a column of identical marks answers it only to whoever
+stops and reads each one. Three rules keep it from becoming a second palette: colour is
+<strong>never the only channel</strong> (every verdict keeps its own glyph and a tooltip naming it); four
+verdicts, not nine; and the hues are tuned for this ground rather than taken off a stock
+palette.</p>
+<p><strong>A duration column falls back to the status only while there is still something to be doing</strong> —
+never "how long since it started", which would report a queued run as having taken four hours.
+But a <em>skipped</em> check is completed with no timestamps at all, so the fallback printed the word
+"completed" under a heading whose every other value is a length of time. A finished thing with
+no duration took no time, and nothing is the honest figure there.</p>
+<h2 id="proposing-one">Proposing one<a class="headerlink" href="#proposing-one" title="Permanent link">&para;</a></h2>
+<p>From the Pull requests surface for the branch that is checked out, from a branch row's ⋮ for
+that branch, or from the <a href="../history/#comparing-two-refs">comparison page</a> with the left as the
+base and the right as the head.</p>
+<p><strong>The proposal is the operation; the other two are courtesies.</strong> Asking for reviewers and
+putting labels on are spent afterwards, on a number only the first request can supply, and a
+failure in either leaves the proposal <strong>open</strong> — reported as a notice rather than an error,
+because calling that a failure would report a success as one and this app has no verb for taking
+a proposal back. Somebody told "it failed" would go looking for a proposal that is sitting there
+open.</p>
+<p><strong><code>draft</code> is sent both ways round rather than omitted when false.</strong> A repository whose plan has
+no draft pull requests answers 422 for <code>true</code>, which is a refusal you can act on; omitting the
+field would quietly open a proposal that is ready for review when a draft was asked for.</p>
+<p><strong>The push is a tick, default off, and the surface owns the order.</strong> A forge cannot open a
+proposal for a branch it has never seen, and getting it there is git's side of the house — so
+the dialog offers the tick, the surface pushes and waits, and the proposal is opened only if the
+push landed. A proposal of half a branch is worse than a refusal, and nothing leaves the machine
+because a dialog was opened.</p>
+<p><strong>What is prefilled comes from the commits it would land</strong>: one commit gives its subject and
+body, several give the branch's name and the list of subjects. Anything else is a form filled in
+twice.</p>
+<h3 id="the-template-a-proposal-starts-from">The template a proposal starts from<a class="headerlink" href="#the-template-a-proposal-starts-from" title="Permanent link">&para;</a></h3>
+<p>A repository that carries a proposal template expects every proposal to start from it, and this
+app opened its dialog with a description assembled from the commits — so a project with a
+checklist got one that skipped it, silently, every time.</p>
+<p><strong>They are read off disk and not fetched.</strong> The file is already in the working tree: reading it
+costs no request, needs no token, works offline, and — the part that decides it — is <strong>the same
+file the forge would use</strong>, so what this app prefills and what a browser prefills cannot come to
+differ. The cost is stated: a checkout that has not fetched the commit adding a template does not
+have it.</p>
+<p>Where they live is the provider's — GitHub looks in three directories under two spellings plus a
+directory of several; GitLab has only a directory and no single file at all; Bitbucket has no
+convention, so the picker is absent.</p>
+<p><strong>The first single file wins and the rest are ignored</strong>, which is the forge's own resolution: a
+repository carrying two has exactly one as far as anybody else is concerned. A <strong>directory</strong>
+contributes all of its templates, that being the whole point of the form.</p>
+<p>The picker is <strong>absent below two</strong>: none at all, and <strong>one</strong> — a repository that has already made
+the choice, where a picker would only ever say what happened when the dialog opened. "None" is the
+<strong>first</strong> row rather than the last, because its position must not depend on how many templates a
+repository happens to have, and choosing it restores the commits' prefill rather than emptying the
+box.</p>
+<p><strong>The title stays the commits'</strong> — a template is a description and says nothing about what to call
+the thing.</p>
+<h2 id="a-link-somebody-else-can-open">A link somebody else can open<a class="headerlink" href="#a-link-somebody-else-can-open" title="Permanent link">&para;</a></h2>
+<p>A url to a file, at a commit, at the lines that are picked — for pasting into a chat message or a
+ticket, where it will be read days later by somebody who was not there.</p>
+<p><strong>It is keyed to the commit and never to a branch.</strong> That is the whole reason it is a verb here
+rather than something you assemble from the repository's front page: a link naming a branch means
+a different file every time anybody pushes, and this one goes on meaning the same lines next week.</p>
+<p>The <strong>shape</strong> is the provider's, because GitHub writes <code>#L4-L9</code> and GitLab writes <code>#L4-9</code>. A forge
+with no such page leaves the capability false and the verb is <strong>absent</strong> rather than copying an
+empty string to the clipboard.</p>
+<p><strong>It costs nothing and asks nobody.</strong> A link is a string: no request, no token, and it works on a
+signed-out repository with a remote.</p>
+<p>Three verbs because there are three questions: the file header's copies a link to the file as this
+commit left it, the diff's hunk header copies one to the lines picked, and <strong>Blame</strong>'s copies one
+to the lines picked there — keyed to the commit the file was <em>read at</em>, resolved from whatever was
+typed in the revision box, because "HEAD" means a different file every time anybody pushes.</p>
+<p><strong>The new side's numbers, and nothing invented.</strong> A selection of removals alone has no line to
+point at in that revision — those lines are in the <em>parent</em> — so it falls back to linking the file
+rather than pointing somebody at a line number that means something else there.</p>
+<p><strong>What was copied is printed for a few seconds</strong> rather than toasted, because somebody about to
+paste a permalink into a channel can see which commit and which lines they are about to claim,
+which "Copied!" would not tell them.</p>
+<h2 id="a-ticket-id-and-the-page-it-names">A ticket id, and the page it names<a class="headerlink" href="#a-ticket-id-and-the-page-it-names" title="Permanent link">&para;</a></h2>
+<p>Everything a commit message says about <em>why</em> tends to be one token long — <code>#412</code>, <code>PROJ-88</code> — and
+the rest of that reasoning is on a page this app is not.</p>
+<p><strong>A rule lives in <code>.git/config</code></strong>, not in the app's settings: which tracker a repository files its
+work in is a fact about the <em>repository</em> — the same in every checkout of it and for everybody who
+works on it. Per checkout rather than committed because <code>.git/config</code> is not cloned, which is also
+what makes a stored rule safe to act on.</p>
+<p><strong>The forge supplies one by default</strong>, so most repositories need no setup: <code>#123</code> against whichever
+tracker hosts the remote. It is a <em>template</em> rather than one url, because an issue link is a
+<strong>rule</strong> — something that turns a token in prose into a page — and the shape is the provider's,
+GitHub writing <code>/issues/123</code> and GitLab <code>/-/issues/123</code>.</p>
+<p><strong>A rule written by hand outranks it</strong>, which is why the default is ranked last: a repository whose
+<code>#</code> means a ticket in somebody else's tracker says so in its own config, and a default that
+outranked it would be this app overruling a statement somebody made deliberately.</p>
+<p>A <strong>Jira/Linear-shaped</strong> id (<code>ABC-123</code>) is recognised out of the box once it has somewhere to go —
+matching the shape costs nothing, and what this app cannot do is <em>guess where it points</em>, since the
+same id means two different companies' trackers. So the shape is built in and the destination is
+one line you write once. With no destination there is <strong>no rule at all</strong> rather than a rule with
+an empty url.</p>
+<p>Two things about git's config syntax fail <strong>silently</strong> and are therefore stated everywhere: <code>#</code>
+opens a comment there, so an unquoted <code>#([0-9]+)</code> is an <em>empty pattern</em>; and a backslash is an
+escape, so an unquoted <code>\b</code> is a backspace character. Neither arrives as an error, and the symptom
+is no link at all — which is exactly what a repository with no rules looks like. Writing a rule
+from the settings page quotes and escapes it, so the trap stops existing for anything typed there;
+what the page still draws is which rules are in force, which came from the forge, and which were
+<strong>dropped and why</strong>.</p>
+<p>Only <code>http</code> and <code>https</code> are allowed, checked on the template before anything is drawn: the answer
+is handed to the desktop, and a <code>file:</code> or a <code>javascript:</code> there is a different kind of thing
+entirely. The capture is percent-encoded on the way in, since a loosely written pattern capturing a
+space is the ordinary way a rule produces something that is not a url.</p>
+<h2 id="somebody-elses-markdown">Somebody else's Markdown<a class="headerlink" href="#somebody-elses-markdown" title="Permanent link">&para;</a></h2>
+<p>A proposal's description, a review's body and a comment on a line are all prose somebody typed into
+a forge, and one component draws all of them.</p>
+<p><strong>Images are stripped before the text is parsed</strong>, and this is not a nicety: Qt's Markdown renderer
+<em>loads images</em> and has no switch for turning that off, so an <code>![](https://…)</code> in somebody else's
+description would make opening the panel a read receipt delivered to whoever wrote it, from a
+private repository, with your address on it. A line saying an image was there replaces it —
+refusing to fetch and refusing to say anything are different things. A badge is a linked image, so
+the picture goes and the link stays.</p>
+<p><strong>Blocks rather than one text item</strong>, because Qt's importer gives a paragraph no margin at all and
+there is no property for block spacing — so a description of any length reads as one wall. The
+source is cut into top-level blocks and the <em>layout</em> puts the space between them, which is also
+what lets a fenced block sit on a ground of its own.</p>
+<p>The splitting is conservative on purpose: a fence is atomic, a <strong>loose list</strong> stays one block
+(cutting at the blanks would make each fragment its own list and restart the numbering at 1), and a
+construct it does not recognise is passed through whole. Nothing is dropped, and a test walks the
+input back out of the blocks.</p>
+<p><strong>A numbered list that does not start at 1 cannot interrupt a paragraph</strong>, which is CommonMark
+rather than a Qt fault and is the single commonest way a description renders wrongly: somebody
+writes a sentence and then a list beginning "2.", and the whole thing comes out as a run-on
+paragraph with the numbers inline. A blank line is inserted.</p>
+<p><strong>A GFM table is laid out here, because Qt parses one and will not draw it</strong> — every column
+collapsed to the width of its own content with no padding, readable only by somebody who already
+knows how many columns there are. The parse is bounded at <strong>where the pipes fall</strong>: a cell's content
+is handed back as Markdown for the renderer to draw inline, so emphasis, code spans and links go on
+being somebody else's parser's business. The overflow is the <em>table's</em> own rather than the panel's,
+so one wide table in the middle of a proposal does not put a horizontal scroll bar under the whole
+of it.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Source-available under the PolyForm Noncommercial License 1.0.0. Commercial use requires a paid licence.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/source-manager/app" target="_blank" rel="noopener" title="source-manager on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.indexes", "content.action.edit", "content.code.copy", "content.tooltips", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

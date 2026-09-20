@@ -1,0 +1,2302 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A desktop GUI for viewing and managing Git repositories, on macOS, Linux and Windows. Built with Qt/QML and libgit2.">
+      
+      
+        <meta name="author" content="pasdam">
+      
+      
+        <link rel="canonical" href="https://source-manager.github.io/docs/development/building/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../testing/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Building - source-manager</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="source-manager" class="md-header__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            source-manager
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="source-manager" class="md-nav__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    source-manager
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/tour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A tour of the window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/keyboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyboard and the palette
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../features/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/fleet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The fleet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/changes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes and staging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/commit-messages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing a commit message
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/diffs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reading a diff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History, graph and search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/splitting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splitting a branch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/extracting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taking pieces out of a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/rewriting-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting history
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/merging-conflicts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Merging and conflicts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/tags-and-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tags and notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/stash-worktrees-submodules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stash, worktrees, submodules, subtrees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/remotes-transport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remotes and transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/lfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git LFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/signing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/patches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/bisect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bisect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/forge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests and CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/reviewing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewing a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/tickets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Asking a model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repository metrics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/automation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Automation and external tools
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/safety/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Undo, backups and the log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the git directory is made of
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../features/settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../comparison/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Comparison
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Comparison
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The feature matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/pricing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the field charges for
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../roadmap/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Closed as decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/non-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deliberate non-goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licensing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Licensing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Building
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Building
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#qt-62-is-the-floor-and-the-qt-5-fallback-is-gone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qt 6.2 is the floor, and the Qt 5 fallback is gone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Warnings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#msvc-needs-four-flags-and-three-of-them-are-not-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSVC needs four flags, and three of them are not preferences
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-precompiled-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      The precompiled header
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-two-targets-and-the-scripts-under-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packaging: two targets, and the scripts under them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Packaging: two targets, and the scripts under them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-disk-image-on-a-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      The disk image, on a Mac
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-deb-from-a-mac-in-a-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      The .deb, from a Mac, in a container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-old-a-macos-the-build-runs-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      How old a macOS the build runs on
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How old a macOS the build runs on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lowering-it-and-why-the-obvious-route-is-a-dead-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lowering it, and why the obvious route is a dead end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-a-second-runner-not-a-universal-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel: a second runner, not a universal binary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-building-what-is-and-is-not-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-building: what is and is not possible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translations-are-compiled-every-build-and-extraction-is-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translations are compiled every build, and extraction is not
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-icon" class="md-nav__link">
+    <span class="md-ellipsis">
+      The icon
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../releasing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releasing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    These docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#qt-62-is-the-floor-and-the-qt-5-fallback-is-gone" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qt 6.2 is the floor, and the Qt 5 fallback is gone
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Warnings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#msvc-needs-four-flags-and-three-of-them-are-not-preferences" class="md-nav__link">
+    <span class="md-ellipsis">
+      MSVC needs four flags, and three of them are not preferences
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-precompiled-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      The precompiled header
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#presets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Presets
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-two-targets-and-the-scripts-under-them" class="md-nav__link">
+    <span class="md-ellipsis">
+      Packaging: two targets, and the scripts under them
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Packaging: two targets, and the scripts under them">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-disk-image-on-a-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      The disk image, on a Mac
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-deb-from-a-mac-in-a-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      The .deb, from a Mac, in a container
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-old-a-macos-the-build-runs-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      How old a macOS the build runs on
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How old a macOS the build runs on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lowering-it-and-why-the-obvious-route-is-a-dead-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lowering it, and why the obvious route is a dead end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-a-second-runner-not-a-universal-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intel: a second runner, not a universal binary
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-building-what-is-and-is-not-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cross-building: what is and is not possible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#translations-are-compiled-every-build-and-extraction-is-not" class="md-nav__link">
+    <span class="md-ellipsis">
+      Translations are compiled every build, and extraction is not
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-icon" class="md-nav__link">
+    <span class="md-ellipsis">
+      The icon
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagnostics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnostics
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/source-manager/app/edit/main/docs/development/building.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="building">Building<a class="headerlink" href="#building" title="Permanent link">&para;</a></h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build
+</code></pre></div>
+<p>Dependencies and the per-platform install rules are in
+<a href="../../getting-started/installing/">Installing</a>. This page is what a contributor needs beyond
+that.</p>
+<h2 id="qt-62-is-the-floor-and-the-qt-5-fallback-is-gone">Qt 6.2 is the floor, and the Qt 5 fallback is gone<a class="headerlink" href="#qt-62-is-the-floor-and-the-qt-5-fallback-is-gone" title="Permanent link">&para;</a></h2>
+<p>For most of this project's life the root configuration looked for Qt 6, fell back to Qt 5, and
+set a version variable so that every link line and two conditional blocks could follow. Six QML
+files carried a sentence explaining what the Qt 5 path would cost them.</p>
+<p>All of it is gone, and <strong>the argument is not that Qt 5 is old</strong>:</p>
+<p><strong>Nothing verified it, and one thing made it unverifiable.</strong> No build of this project has ever
+been made with Qt 5 — not on either desk, not in either CI job — and it could not have been:
+eleven of the QML suites call <code>waitForPolish</code>, which arrived in <strong>Qt 6.5</strong>, so a Qt 5 configure
+would have produced a build whose own test suite could not run.</p>
+<p>A fallback that no run exercises is not a fallback; it is a set of conditionals that read as
+safety while guaranteeing nothing. Same fault as a <code>find_program</code> guard that skips in silence.</p>
+<p><strong>The floor is 6.2 rather than 6.5, and that gap is deliberate.</strong> 6.2 is the oldest Qt 6 LTS
+and what a long-term distribution ships; the <em>app</em> builds and runs against it. What needs 6.5
+is the <strong>test suite</strong>, which a packager does not run — so raising the floor to 6.5 would refuse
+to configure on a machine where the product itself works.</p>
+<p>Three uses in the QML tree are genuinely version-guarded — the system colour scheme (6.5) and
+the two native choosers (6.3) — and those guards <strong>stay</strong>: an unsatisfiable import is fatal to
+the whole file that writes it, which is why the two choosers sit behind loaders.</p>
+<h2 id="warnings">Warnings<a class="headerlink" href="#warnings" title="Permanent link">&para;</a></h2>
+<p><code>-Wall -Wextra</code> (<code>/W4</code> on MSVC) are on and <strong><code>-Werror</code> deliberately is not</strong>.</p>
+<p>The compiler's default is close to silent, which is how a <code>/*</code> inside a block comment reached a
+reader rather than whoever wrote it. Turning the warnings on is one decision; failing the build
+on them is a second one with a different cost — a toolchain upgrade adds diagnostics, and a
+build that stops on those is a build that gets the flag removed rather than the code fixed.</p>
+<p>They are set once at the root, so the library, the app and every test executable are held to
+the same standard.</p>
+<div class="admonition note">
+<p class="admonition-title">A glob in a block comment</p>
+<p>The prose in this codebase is long and quotes patterns, and <code>vendor/**</code> or <code>/sub/*.log</code>
+inside a <code>/* … */</code> block opens a nested comment as far as the compiler is concerned — and
+everything to the next <code>*/</code> is then being read as one comment. Write the prefix and the
+wildcard as separate quoted pieces, or use <code>//</code> blocks.</p>
+</div>
+<h2 id="msvc-needs-four-flags-and-three-of-them-are-not-preferences">MSVC needs four flags, and three of them are not preferences<a class="headerlink" href="#msvc-needs-four-flags-and-three-of-them-are-not-preferences" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>/utf-8</code></strong> — MSVC reads source in the machine's ANSI code page, and this tree's comments
+  and <em>labels</em> carry ⌘, ⏎ and ⇧. Without it those are the first thing silently wrong.</li>
+<li><strong><code>/permissive-</code></strong> — MSVC's pre-standard lookup accepts templates the other two compilers
+  refuse, which is how a third platform becomes a fork.</li>
+<li><strong><code>/bigobj</code></strong> — raises an object file's section limit. It is here rather than after the first
+  failure because that failure is a hard error, not a warning.</li>
+<li><strong><code>/W4</code></strong>, and no <code>/WX</code>, for the reason above.</li>
+</ul>
+<h2 id="the-precompiled-header">The precompiled header<a class="headerlink" href="#the-precompiled-header" title="Permanent link">&para;</a></h2>
+<p>The 129 translation units are half of CI's wall clock, and a precompiled header takes a fifth
+off it. Measured against a <strong>cold</strong> build with no compiler cache, at <code>--parallel 2</code> with four
+other builds running:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>wall</th>
+<th>user (CPU)</th>
+<th>sys</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>before</td>
+<td>2m45.9s</td>
+<td>4m36.2s</td>
+<td>49.4s</td>
+</tr>
+<tr>
+<td>after</td>
+<td>2m12.5s</td>
+<td>3m25.5s</td>
+<td>53.2s</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>−20.1%</strong></td>
+<td><strong>−25.6%</strong></td>
+<td>+7.7%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The CPU figure is the one to believe</strong> — wall clock on a machine running four other builds
+is a measurement of the other four as much as of this one. The <code>sys</code> column going <em>up</em> is the
+honest cost and is what it should be: a ~100 MB file read once per object instead of parsing
+headers.</p>
+<p><strong>Sixteen Qt headers and nothing of this project's own</strong>, chosen by how many units include
+them rather than by taste. Nothing local, deliberately — a precompiled header holding the god
+header would make an edit to <em>it</em> rebuild every object in the library, which is the cost this
+is supposed to remove, paid on the edit somebody is actually making.</p>
+<p>One for the library and one for the suite. The library's is private: a public one is inherited
+by everything that links the target, which would put a second, differently-flagged compile
+under each of the sixty test executables.</p>
+<p><strong>The god header cannot be split, and that was checked rather than assumed.</strong> The manager
+includes all 51 controller headers and 44 of the library's 83 units include <em>it</em>, so editing
+any controller header rebuilds over half the library. The obvious fix — forward-declare the
+controllers, move the includes into the source — does not work: moc requires the <strong>complete
+type</strong> for a property of pointer type, and the generated unit sees only the header.
+Demonstrated on a three-line file rather than argued from memory.</p>
+<p><strong>What is left after the precompiled header is not includes.</strong> With nine more headers added,
+chosen the same way, a cold library build went from 1m07.8s to 1m05.0s — <strong>4%</strong>. That is the
+headroom include hygiene has here; what remains is template instantiation across 83 units.</p>
+<div class="admonition warning">
+<p class="admonition-title">A unity build was not done, and would not be</p>
+<p>It is the larger win and it <strong>changes what the compiler sees</strong>: concatenated units share a
+translation unit, so a missing <code>#include</code> in one file is supplied by whichever file happened
+to be concatenated above it — and the build stays green until somebody reorders the list or
+compiles that file alone.</p>
+<p>A precompiled header cannot do that, since it is a <em>prefix</em> every unit gets whether or not
+it asked. That asymmetry is the whole reason one of these is here and the other is not.</p>
+</div>
+<h2 id="presets">Presets<a class="headerlink" href="#presets" title="Permanent link">&para;</a></h2>
+<p><code>CMakePresets.json</code> holds the build configurations — <code>debug</code> / <code>release</code>, each with an
+<code>-install</code> variant — and is committed <strong>because Qt Creator's own build configuration is not</strong>:
+that lives in a gitignored file, is rewritten by the IDE, and carries a kit UUID from the
+developer's own profile. A preset is the only way for the repository to say how the project is
+built.</p>
+<p>The one thing a committed preset cannot supply is where Qt lives, which is machine-specific.
+See <a href="../../getting-started/installing/#from-qt-creator">Installing</a> for the gitignored
+user-preset that pins it robustly.</p>
+<h2 id="packaging-two-targets-and-the-scripts-under-them">Packaging: two targets, and the scripts under them<a class="headerlink" href="#packaging-two-targets-and-the-scripts-under-them" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>dmg<span class="w">   </span><span class="c1"># macOS: a drag-to-install disk image</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>deb<span class="w">   </span><span class="c1"># Linux: a Debian package</span>
+</code></pre></div>
+<p>Each is declared only on the platform that can run it — a <code>deb</code> target on macOS would be a target
+that fails when pressed — and neither is in <code>all</code>: packaging takes minutes and is something a
+person asks for.</p>
+<p>Both are a <strong>front door and not an implementation</strong>. The work is <code>tools/make-deb.sh</code> and
+<code>tools/make-dmg.sh</code>, and it is there for two reasons: the release pipeline runs them without a
+build tree of the shape a CMake target needs, and a shell script can be <em>tested</em> —
+<code>test_debpackage</code> and <code>test_dmgimage</code> run these directly, and ci.yml runs both for real on every
+push. A target that inlined the steps would be a second implementation, exercised only by whoever
+happened to use it.</p>
+<p>What each produces, and what it deliberately is not, is in
+<a href="../releasing/#the-artifacts">Releasing</a>.</p>
+<h3 id="the-disk-image-on-a-mac">The disk image, on a Mac<a class="headerlink" href="#the-disk-image-on-a-mac" title="Permanent link">&para;</a></h3>
+<p><code>--target dmg</code> stages the built bundle, runs <code>macdeployqt</code> over it to copy Qt in, ad-hoc signs it
+— not optional on Apple Silicon, where the kernel refuses to run code whose signature does not
+match its contents — checks with <code>tools/verify-macos-bundle.sh</code> that nothing in it still points at
+your Homebrew prefix, and lays the window out: the app on the left, an <code>Applications</code> symlink on
+the right, an arrow between them. It prints the path it wrote.</p>
+<p>The window's layout is <strong>Finder's</strong>, driven by AppleScript, so the first run asks whether your
+terminal may control Finder. Refusing is not fatal: the image is still built, undecorated, and the
+script says loudly that it has no layout. That is also what happens on a CI runner, which has no
+GUI session — so the decoration is the one part of the image CI cannot check, and
+<code>test_dmgimage</code>'s arithmetic plus opening a release candidate on a Mac is what covers it.</p>
+<p>It is <strong>not notarised</strong>. Whoever you send it to right-clicks &gt; Open the first time. To sign it
+properly, pass a Developer ID Application identity:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./tools/make-dmg.sh<span class="w"> </span>--build-dir<span class="w"> </span>build<span class="w"> </span>--output<span class="w"> </span>build/packages<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>--sign<span class="w"> </span><span class="s2">"Developer ID Application: … (TEAMID)"</span>
+</code></pre></div>
+<h3 id="the-deb-from-a-mac-in-a-container">The .deb, from a Mac, in a container<a class="headerlink" href="#the-deb-from-a-mac-in-a-container" title="Permanent link">&para;</a></h3>
+<p><code>--target deb</code> works on macOS too, and does the container run for you:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>deb<span class="w">    </span><span class="c1"># → build/packages/source-manager_&lt;v&gt;-1_amd64.deb</span>
+</code></pre></div>
+<p>On a Debian-ish machine that runs <code>tools/make-deb.sh</code> against the build tree already there; on
+macOS it goes through <code>tools/make-deb-docker.sh</code>, which mounts the checkout <strong>read-only</strong>, builds
+inside the container, and runs <em>the same</em> <code>make-deb.sh</code> in there. One name, one implementation,
+and the difference is the platform's rather than yours.</p>
+<p>It is minutes rather than seconds: the whole app is compiled inside an emulated amd64 container.
+The script says so before it starts.</p>
+<p>There are two other doors onto the same thing — the script directly, and compose:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./tools/make-deb-docker.sh<span class="w"> </span>--output<span class="w"> </span>build/packages
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>deb
+</code></pre></div>
+<p>All three run one implementation. The toolchain is <code>packaging/deb/Dockerfile</code>, which carries no
+source at all; the steps are <code>packaging/deb/make-deb-in-container.sh</code>, read <strong>out of the read-only
+mount</strong> so it cannot go stale against the tree being built; and what that runs is
+<code>tools/make-deb.sh</code>, the script the release pipeline runs.
+<code>tools/make-deb-docker.sh --print-command</code> prints the two docker commands without running them.</p>
+<p>The toolchain being an image layer is the difference between a rebuild and a re-<em>install</em>: it
+used to <code>apt-get install</code> Qt's dev packages inside every run, which under emulation is minutes
+before the first line compiles.</p>
+<p>Three details are load-bearing. The source is <code>:ro</code> because the container runs as root and a
+writable mount leaves root-owned files in your tree. <code>HOST_UID</code>/<code>HOST_GID</code> are what bring the
+package back owned by you — through compose on Linux, pass them in
+(<code>HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose run --rm deb</code>). And:</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>--platform linux/amd64</code> is not optional on Apple Silicon</p>
+<p>A <code>.deb</code> is built for one architecture and <code>dpkg</code> refuses it on any other. Without the flag
+you get an <code>arm64</code> package — right for a Raspberry Pi, useless to everybody on an ordinary
+PC. The cost is that the build runs under emulation and takes several times longer.</p>
+</div>
+<p><strong>The distribution it is built on decides who can install it.</strong> The package depends on the Qt it
+was linked against, so one built on 26.04 will not install on 24.04 and one built on 24.04
+installs on both. <code>ubuntu:26.04</code> is the default because it is what <code>release.yml</code> builds the
+published package on: a container run is then a rehearsal of the release rather than an
+approximation of it, and the floor of both is Ubuntu 26.04.</p>
+<div class="admonition warning">
+<p class="admonition-title">Nothing on the way to a release compiles against the app's own floor</p>
+<p>The app claims Qt 6.2 and every machine that builds it now carries 6.10, so a call newer than
+the floor compiles everywhere and fails only for somebody on an older Qt. It has happened
+twice — <code>beginFilterChange()</code> in a proxy, and a <code>closing</code> connection needing a
+<code>QQuickCloseEvent</code> Qt keeps private before 6.6 — and both were caught by a 24.04 container
+back when the release was built in one.</p>
+<p>What checks it now is a compose service nothing makes you run:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>floor<span class="w">   </span><span class="c1"># 24.04, Qt 6.4 → build/packages/24.04/</span>
+</code></pre></div>
+</div>
+<p>Install the result with <code>apt</code>, never <code>dpkg -i</code> — <code>apt</code> pulls the dependencies in, <code>dpkg</code> only
+reports that they are missing:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>./build/packages/source-manager_*.deb
+</code></pre></div>
+<h2 id="how-old-a-macos-the-build-runs-on">How old a macOS the build runs on<a class="headerlink" href="#how-old-a-macos-the-build-runs-on" title="Permanent link">&para;</a></h2>
+<p>The cask says <code>depends_on macos: "&gt;= :sequoia"</code>, and that is a description of the artifact
+rather than a policy. <strong>The floor is the highest of three numbers</strong>, and only one of them is
+this project's:</p>
+<ol>
+<li><strong>Your own deployment target.</strong> <code>CMAKE_OSX_DEPLOYMENT_TARGET</code> is not set anywhere here, so
+   the binary is built for whatever SDK the build host has — macOS 15 on the <code>macos-15</code> runner.</li>
+<li><strong>The minimum of the Qt frameworks <code>macdeployqt</code> copies in.</strong> Homebrew builds its bottles per
+   macOS version, so a <code>brew install qt</code> on Sequoia gives frameworks built for Sequoia. This is
+   the number that usually decides it, and it is the one people miss: setting a deployment
+   target on <em>your</em> code does nothing about the frameworks sitting next to it in the bundle.</li>
+<li><strong>What Qt itself supports.</strong> Qt has been dropping macOS versions steadily; check the release
+   notes for the version you are on.</li>
+</ol>
+<p>Read what a built bundle actually claims rather than trusting any of the above:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>otool<span class="w"> </span>-l<span class="w"> </span>build/packages/stage/SourceManager.app/Contents/MacOS/SourceManager<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A3<span class="w"> </span>LC_BUILD_VERSION
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>otool<span class="w"> </span>-l<span class="w"> </span>…/Contents/Frameworks/QtCore.framework/Versions/A/QtCore<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-A3<span class="w"> </span>LC_BUILD_VERSION
+</code></pre></div>
+<h3 id="lowering-it-and-why-the-obvious-route-is-a-dead-end">Lowering it, and why the obvious route is a dead end<a class="headerlink" href="#lowering-it-and-why-the-obvious-route-is-a-dead-end" title="Permanent link">&para;</a></h3>
+<p>The obvious move is to build on an older runner. <strong>It no longer works</strong>: <code>macos-14</code> is
+deprecated in <code>actions/runner-images</code>, and adopting an image that is being removed buys a lower
+floor until the day the release stops scheduling. macOS 15 is the oldest image that is not on its
+way out, which is where the build already is.</p>
+<p>So the floor is Homebrew's, and moving it means <strong>changing where the dependencies come from</strong> —
+Qt from qt.io (whose macOS packages are universal and target an older macOS), libgit2 and OpenSSL
+built against the same target rather than taken from <code>brew</code>. That is a real piece of work with
+its own verification, not a flag, and nobody has done it here.</p>
+<p>What <em>has</em> been done is to make the attempt checkable, because the failure is silent:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DSOURCEMANAGER_MACOS_MIN<span class="o">=</span><span class="m">13</span>.0
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>dmg
+</code></pre></div>
+<p><code>SOURCEMANAGER_MACOS_MIN</code> sets <code>CMAKE_OSX_DEPLOYMENT_TARGET</code>, which governs <strong>the app's own
+binary and nothing else</strong>. <code>tools/make-dmg.sh</code> then reads every Mach-O in the finished bundle and
+reports the highest minimum it finds — the frameworks included — so you can see immediately
+whether the deployment target achieved anything. <code>--min-macos 13.0</code> turns that report into a
+refusal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>the bundle needs macOS 15.0 and --min-macos said 13.0.
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Something in it is built for a newer macOS than you are promising — almost always
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Homebrew's Qt, libgit2 or libcrypto, which are built per macOS version and do not
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>follow CMAKE_OSX_DEPLOYMENT_TARGET.
+</code></pre></div>
+<p>Which is the whole lesson in one message. A bundle nothing can be read out of is <strong>reported and
+not refused</strong>: an empty measurement is a parse that failed, not a floor of zero.</p>
+<h3 id="intel-a-second-runner-not-a-universal-binary">Intel: a second runner, not a universal binary<a class="headerlink" href="#intel-a-second-runner-not-a-universal-binary" title="Permanent link">&para;</a></h3>
+<p>An earlier version of this page said Intel meant dropping Homebrew. That is true of building a
+<em>universal</em> binary on one machine, and it is the wrong way to get there. <strong>GitHub offers x64
+macOS runners</strong> — <code>macos-15-intel</code> and <code>macos-26-intel</code> — and Homebrew on one of those installs
+x86_64 bottles like any other native machine.</p>
+<p>So Intel support is a <strong>second job producing a second disk image</strong>, not a universal build: the
+same <code>make-dmg.sh</code>, an artifact named for its architecture, and a cask with <code>on_arm</code> and
+<code>on_intel</code> blocks carrying a url and digest each. <code>depends_on arch: :arm64</code> comes out at that
+point. It is not done here because nobody has asked for it, and it costs a second macOS job's
+worth of CI on every release.</p>
+<h2 id="cross-building-what-is-and-is-not-possible">Cross-building: what is and is not possible<a class="headerlink" href="#cross-building-what-is-and-is-not-possible" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>From → to</th>
+<th>Possible?</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS → Linux <code>.deb</code></td>
+<td><strong>yes</strong></td>
+<td>Docker, above. Not really cross-building: a native Linux build inside a container, emulated for amd64 on Apple Silicon</td>
+</tr>
+<tr>
+<td>Apple Silicon → Intel macOS</td>
+<td><strong>not locally</strong></td>
+<td>Every dependency would need an x86_64 slice and Homebrew's have none. The answer is not to cross-build but to <em>build natively</em> on an <code>macos-15-intel</code> runner — see above</td>
+</tr>
+<tr>
+<td>Linux → macOS</td>
+<td><strong>no</strong></td>
+<td>The SDK cannot be redistributed, <code>codesign</code> and <code>hdiutil</code> are macOS-only, and <code>macdeployqt</code> runs nowhere else. <code>osxcross</code> exists and none of the packaging does</td>
+</tr>
+<tr>
+<td>anything → Windows</td>
+<td><strong>no</strong></td>
+<td>MSVC, and the pipeline is the only place this project has ever built for Windows</td>
+</tr>
+<tr>
+<td>Linux → other Linux</td>
+<td><strong>yes</strong></td>
+<td>The same container trick with a different base image</td>
+</tr>
+</tbody>
+</table>
+<p>The short version: <strong>macOS builds happen on a Mac and Windows builds happen in CI.</strong> Everything
+else you can do from either.</p>
+<h2 id="translations-are-compiled-every-build-and-extraction-is-not">Translations are compiled every build, and extraction is not<a class="headerlink" href="#translations-are-compiled-every-build-and-extraction-is-not" title="Permanent link">&para;</a></h2>
+<p>The <code>.ts</code> catalogues are <strong>source</strong>: they carry human translations and a per-message
+"unfinished" flag a translator clears by hand, so a build that reran extraction would make
+every compile a working-tree modification and would race two build directories against one
+file.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--target<span class="w"> </span>update_translations
+</code></pre></div>
+<p>Location comments are switched off, because file-and-line comments move every message in the
+file whenever a line is inserted above it, and document where a string <em>was</em> rather than
+anything a translator needs.</p>
+<p><strong>Linguist is required, and refusing to configure without it is the icon's lesson applied.</strong>
+The app icon was once assembled behind a guard that skipped in silence, and what it produced
+was a bundle with no icon and a status line nobody reads. A missing <code>lrelease</code> is the same
+failure with a worse face — the build succeeds, every test passes, and the app speaks one
+language for reasons no message anywhere explains.</p>
+<h2 id="the-icon">The icon<a class="headerlink" href="#the-icon" title="Permanent link">&para;</a></h2>
+<p>One generator draws the mark and writes <strong>four readings of it</strong>: the <code>.iconset</code> of PNGs, the
+macOS <code>.icns</code>, the Windows <code>.ico</code>, and — from the same PNGs — the six sizes the Linux install
+rules file into the icon theme.</p>
+<p><strong>Both the <code>.icns</code> and the <code>.ico</code> are committed.</strong> The first version assembled the <code>.icns</code> at
+build time with a macOS-only tool wrapped in a guard that skipped in silence, so any build
+without it produced a bundle with no icon. Writing the container in the generator makes the
+icon a build input like any other file.</p>
+<p>The <strong>window</strong> icon is a separate thing and is set from the resource: the <code>.icns</code> is what
+Finder and the Dock show for the <em>application</em>, while the window icon is what a running window
+carries in the switcher and on every platform with no bundle at all. Setting one and not the
+other is how an app ends up with an icon everywhere except where you were looking.</p>
+<p>Three details differ per platform and each is a reason rather than a taste: the <code>.ico</code> is
+compiled <strong>into the executable</strong>, because that is where Explorer reads one from; it has a 48
+where the <code>.iconset</code> does not, because Windows picks an entry out of one file while an icon
+theme scales the nearest size it holds; and its resource id is a bare <code>1</code>, because the shell
+shows the <strong>lowest-numbered</strong> icon resource.</p>
+<h2 id="diagnostics">Diagnostics<a class="headerlink" href="#diagnostics" title="Permanent link">&para;</a></h2>
+<p>Two command-line flags, off by default, and both draw into the window as well as printing:</p>
+<ul>
+<li><code>--trace-timing</code> — every controller refresh, the whole of opening a repository, each
+  navigation, each surface built. They nest, and the lines are indented by depth.</li>
+<li><code>--trace-swipe</code> — a line per wheel event with its phase, both deltas, the accumulated travel
+  and whether anything moved.</li>
+</ul>
+<p><strong>The panel is not belt and braces.</strong> A line on stdout is invisible to an app launched from
+Finder, can be filtered by a logging rule, and is absent altogether when the build predates the
+change — and all three read as "the trace does not work", which is indistinguishable from "the
+thing being traced never happened", which is the question. The panel appears the moment the
+flag is honoured, so the first is settled before the second is asked.</p>
+<p>A flag rather than a setting, because it is a diagnostic somebody runs once rather than a
+choice about how the app behaves. Off, every entry point returns on a bool and allocates
+nothing, which is what lets the calls sit in the hot paths — and the switch is <strong>writable</strong>, so
+a test can turn it on: the swipe trace shipped switched off on every platform the suite runs on
+and nothing noticed, because its switch was a platform check no test could reach.</p>
+<p>A release build compiles them out entirely.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Source-available under the PolyForm Noncommercial License 1.0.0. Commercial use requires a paid licence.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/source-manager/app" target="_blank" rel="noopener" title="source-manager on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.indexes", "content.action.edit", "content.code.copy", "content.tooltips", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

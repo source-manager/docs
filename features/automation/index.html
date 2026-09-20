@@ -1,0 +1,2248 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A desktop GUI for viewing and managing Git repositories, on macOS, Linux and Windows. Built with Qt/QML and libgit2.">
+      
+      
+        <meta name="author" content="pasdam">
+      
+      
+        <link rel="canonical" href="https://source-manager.github.io/docs/features/automation/">
+      
+      
+        <link rel="prev" href="../metrics/">
+      
+      
+        <link rel="next" href="../safety/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Automation and external tools - source-manager</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#automation-and-external-tools" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="source-manager" class="md-header__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            source-manager
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Automation and external tools
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Follow the system"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Follow the system" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="source-manager" class="md-nav__button md-logo" aria-label="source-manager" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    source-manager
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/source-manager/app" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    source-manager/app
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../getting-started/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Getting started
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/tour/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A tour of the window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/keyboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Keyboard and the palette
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Features
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Features
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fleet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The fleet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes and staging
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../commit-messages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Writing a commit message
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diffs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reading a diff
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    History, graph and search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../splitting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Splitting a branch
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extracting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Taking pieces out of a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rewriting-history/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rewriting history
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../merging-conflicts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Merging and conflicts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tags-and-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tags and notes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stash-worktrees-submodules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stash, worktrees, submodules, subtrees
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../remotes-transport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remotes and transport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lfs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git LFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Signing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bisect/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bisect
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forge/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pull requests and CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reviewing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reviewing a proposal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tickets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The tracker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Asking a model
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metrics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Repository metrics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Automation and external tools
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Automation and external tools
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#named-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Named sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Named sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-step-is-a-verb-this-app-already-has-and-never-a-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      A step is a verb this app already has, and never a command line
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-stops-and-says-which-step-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      It stops, and says which step and why
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-and-kept-in-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global, and kept in JSON
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#three-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Three routes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow recipes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow recipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use one
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-editor-terminal-and-file-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Your editor, terminal and file manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your editor, terminal and file manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#it-works-before-you-have-configured-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      It works before you have configured anything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#they-are-command-templates-not-program-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      They are command templates, not program names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-button-and-the-destinations-are-a-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      One button, and the destinations are a list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-the-verbs-are" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where the verbs are
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-command-of-your-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      A command of your own
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../safety/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Undo, backups and the log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the git directory is made of
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../settings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Settings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../comparison/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Comparison
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Comparison
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/matrix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The feature matrix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../comparison/pricing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    What the field charges for
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../roadmap/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Roadmap
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Closed as decisions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roadmap/non-goals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deliberate non-goals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licensing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Licensing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../development/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/building/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Building
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Testing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/releasing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Releasing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    These docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#named-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Named sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Named sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-step-is-a-verb-this-app-already-has-and-never-a-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      A step is a verb this app already has, and never a command line
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#it-stops-and-says-which-step-and-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      It stops, and says which step and why
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#placeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      Placeholders
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-and-kept-in-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Global, and kept in JSON
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#three-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Three routes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workflow-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workflow recipes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow recipes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-use-one" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to use one
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hooks
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#your-editor-terminal-and-file-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Your editor, terminal and file manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Your editor, terminal and file manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#it-works-before-you-have-configured-anything" class="md-nav__link">
+    <span class="md-ellipsis">
+      It works before you have configured anything
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#they-are-command-templates-not-program-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      They are command templates, not program names
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-button-and-the-destinations-are-a-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      One button, and the destinations are a list
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-the-verbs-are" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where the verbs are
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-command-of-your-own" class="md-nav__link">
+    <span class="md-ellipsis">
+      A command of your own
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/source-manager/app/edit/main/docs/features/automation.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="automation-and-external-tools">Automation and external tools<a class="headerlink" href="#automation-and-external-tools" title="Permanent link">&para;</a></h1>
+<p><strong>Licensing — Free, with paid parts.</strong> Hooks, your editor, your terminal and your file manager are free. Sequences of your own are <code>custom-actions</code> and the workflow recipes are <code>git-flow</code>. <a href="../../licensing/">What a licence adds</a></p>
+<p>Four things that are about running something: sequences of the app's own verbs, git-flow as
+editable recipes, the hooks git would run, and your editor, terminal and file manager.</p>
+<h2 id="named-sequences">Named sequences<a class="headerlink" href="#named-sequences" title="Permanent link">&para;</a></h2>
+<p>"Check out main, pull, check out prod, pull, rebase onto main, check out main" — six things
+somebody types every week, under a name, run with one press.</p>
+<h3 id="a-step-is-a-verb-this-app-already-has-and-never-a-command-line">A step is a verb this app already has, and never a command line<a class="headerlink" href="#a-step-is-a-verb-this-app-already-has-and-never-a-command-line" title="Permanent link">&para;</a></h3>
+<p>That is the decision the whole feature is shaped by, and three things follow:</p>
+<ol>
+<li><strong>Every refusal is a controller's own</strong> — a dirty working tree, a diverged history, a branch
+   that does not exist — in the words you would have seen pressing the button.</li>
+<li><strong>Nothing new can execute.</strong> This grows no way to run a program, unlike the
+   <a href="#a-command-of-your-own">custom command</a>, whose whole subject is running one.</li>
+<li><strong>The editor offers a real list</strong> rather than asking you to remember git's spelling.</li>
+</ol>
+<p>What is given up is everything git can do that this app has no verb for, and the honest answer
+to that is the vocabulary getting longer one verb at a time rather than a text field that runs
+whatever is in it.</p>
+<p><strong>The vocabulary is published, with each verb's fields</strong>, so the editor draws a drop-down and
+then the arguments for whatever was picked. A verb the list does not hold is dropped on load
+<em>and</em> on save, so a hand-edited file naming <code>rm -rf</code> gets a step dropped rather than a sequence
+that runs it.</p>
+<h3 id="it-stops-and-says-which-step-and-why">It stops, and says which step and why<a class="headerlink" href="#it-stops-and-says-which-step-and-why" title="Permanent link">&para;</a></h3>
+<p>The interesting question is not what happens when a sequence works. It stops where it stopped:
+the refusal is reported with its position — "step 3 of 6, check out prod" — the log holds the
+steps that did run, and nothing after the failure is attempted.</p>
+<p><strong>There is no "continue on failure"</strong>, per step or otherwise, because a sequence that carried on
+past a refused checkout would do the rest of its work on the wrong branch.</p>
+<p><strong>A merge or a rebase that <em>stopped</em> is not a step that ran.</strong> Both report success for a
+conflicted result — the index is written and the Conflicts surface finishes it — and that is a
+state for somebody to settle rather than something to run four more writes on top of.</p>
+<p>A <strong>clean</strong> stop is different, and getting that wrong made <code>--no-ff</code> unusable: this app's merge
+also stops on a clean normal merge, waiting to be committed. "A merge that stopped is not a step
+that ran" was right about conflicts and was applied to every stop, so a <code>--no-ff</code> step — the
+whole of what git-flow is — reported "stopped on conflicts" every time. A conflicted stop still
+ends the sequence in the same words; a clean stop is a merge waiting to be committed, and the
+step after it commits one.</p>
+<h3 id="placeholders">Placeholders<a class="headerlink" href="#placeholders" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%current-branch</code></td>
+<td><strong>Per step</strong>, as it runs</td>
+</tr>
+<tr>
+<td><code>%default-branch</code></td>
+<td>Per step</td>
+</tr>
+<tr>
+<td><code>%starting-branch</code></td>
+<td><strong>Once</strong>, when the run starts</td>
+</tr>
+<tr>
+<td><code>%&lt;your-key&gt;</code></td>
+<td>From what you type when you press Run</td>
+</tr>
+</tbody>
+</table>
+<p>Per step is the point: a sequence <em>moves</em> HEAD, so "check out main, pull, check out
+<code>%current-branch</code>" would otherwise come back to where it began.</p>
+<p><code>%starting-branch</code> is the exception that proves it, and is what makes a finish sequence possible
+at all: "check out the trunk, merge the branch I was on, delete it" cannot be written with
+<code>%current-branch</code>, because after the first step that <em>is</em> the trunk — so the second would merge
+it into itself and the third would delete it.</p>
+<p><strong>A sequence can ask for one value</strong>, which is the smallest thing that makes "start a feature
+called X" writable: without it a sequence can only ever do fixed things, and a branch name baked
+into a recipe is a recipe for one branch. It is <strong>not</strong> a widening of the rule above — what
+arrives is a <em>value</em> landing in a field a verb already had. A missing value is refused <strong>before
+the first step</strong> rather than resolving to an empty string: half of <code>feature/</code> is a branch nobody
+meant to make, and a sequence that found out on step three would have moved HEAD twice already.</p>
+<h3 id="global-and-kept-in-json">Global, and kept in JSON<a class="headerlink" href="#global-and-kept-in-json" title="Permanent link">&para;</a></h3>
+<p>Not per repository: that sequence is the same errand in every checkout you have. It is JSON
+beside the settings rather than in them, written through on every edit, and nothing recorded can
+carry a credential — a step is a verb id and arguments that are refs, remotes and messages.</p>
+<h3 id="three-routes">Three routes<a class="headerlink" href="#three-routes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Manage → Actions</strong> makes and edits them, beside the list.</li>
+<li><strong>Actions ▾</strong> on the top bar runs one from wherever you are, saying which step it is on.</li>
+<li><strong>Each sequence is its own palette entry under its own name</strong>, because a name is how one is
+  found and a single "Run an action…" entry would put the thing you typed three letters of one
+  level further away.</li>
+</ul>
+<p>Sequences that ask for a value are left <strong>out</strong> of the palette route rather than offered and
+refused: the palette is built in the shell, which has no field to type a branch name into, so
+the entry could only ever run with nothing.</p>
+<h2 id="workflow-recipes">Workflow recipes<a class="headerlink" href="#workflow-recipes" title="Permanent link">&para;</a></h2>
+<p>git-flow's six errands as ordinary sequences — feature, release and hotfix, start and finish.</p>
+<p><strong>There is no git-flow controller.</strong> A workflow is an opinion, and one held in a controller is
+one the app imposes — on branch names it guessed, in an order it chose, with no way for anybody
+to disagree. Adding a recipe <strong>makes an ordinary sequence</strong> instead: it lands in the same file as
+everything else, renamable, editable, deletable, and adaptable the first time somebody's trunk is
+not called what this app assumed.</p>
+<h3 id="how-to-use-one">How to use one<a class="headerlink" href="#how-to-use-one" title="Permanent link">&para;</a></h3>
+<ol>
+<li>On <strong>Manage → Actions</strong>, open <strong>Add a recipe</strong> and pick one.</li>
+<li>It lands as an ordinary editable action: rename it, reorder the steps, change a branch name.
+   Nothing about it is special afterwards.</li>
+<li>Run it from <strong>Actions ▾</strong>, from anywhere.</li>
+</ol>
+<p>The trunk is <code>%default-branch</code> so a recipe travels between repositories; <strong><code>develop</code> is a
+literal</strong>, because it is git-flow's own name for a branch this app has no way to discover — and
+an editable copy is exactly what a project that calls it something else needs.</p>
+<p>Adding one twice makes two rather than refusing, unlike creating a sequence by name: a second
+copy to adapt is the ordinary reason to press it again.</p>
+<h2 id="hooks">Hooks<a class="headerlink" href="#hooks" title="Permanent link">&para;</a></h2>
+<p><strong>Manage → Hooks.</strong> A hook is an executable file in one directory with a name git looks for, and
+every refusal here follows from that: nothing about a hook is in a commit, in the index or in any
+reflog.</p>
+<p><strong>Where the hooks are is a question, not a constant.</strong> <code>core.hooksPath</code> moves the directory, and
+a repository that sets it runs <em>nothing</em> from <code>.git/hooks</code> — so a list hard-coded to that path was
+confidently showing hooks that could not fire and hiding the ones that would. It is read first, and
+resolved against the working tree when relative.</p>
+<p>That is also what makes this right inside a <strong>linked worktree</strong>: hooks live in the common directory
+and a worktree's <code>.git</code> is a <em>file</em>, so the old reading reported "no hooks" — the one answer that is
+never true.</p>
+<p>The tab says whether the path came from config, because "these are the hooks" and "these are the
+hooks <em>because config says so</em>" are different things to be told, and it prints the resolved
+directory in full.</p>
+<p><strong>The executable bit is what git looks at, so it is what "enabled" means.</strong> A file's presence, its
+name and its permissions are three separate facts and the list carries all three:</p>
+<ul>
+<li><strong><code>.sample</code> is not a state</strong> — it is a <em>different filename</em>, one git never looks for, and the
+  samples are what <code>git init</code> leaves behind. So a sample is something to install <em>from</em>.</li>
+<li><strong>An inactive hook is a real hook git will not run.</strong> The old list drew any file it found as
+  installed, which is the worst way round: a <code>pre-commit</code> git silently skips looks exactly like one
+  guarding every commit. The count line is "%1 of %2 run" rather than the list's length.</li>
+</ul>
+<p><strong>One asymmetry in the write path is deliberate.</strong> A hook created here is made executable, because a
+file git will not run is not what somebody who has just written one meant by "save". An existing
+hook's bit is left exactly as it was: enabling is its own verb, and saving an edit to a hook you
+deliberately switched off must not switch it back on behind you.</p>
+<p><strong>Nothing is read that cannot be edited.</strong> A hook may be a compiled program or a megabyte of
+generated shell, and a program loaded into a text editor is a program destroyed by the first save.
+The refusal names the file <em>and its path</em>, so it can be edited where it is — and the editor draws
+that sentence <strong>instead of</strong> the box, since an editor beside "this could not be read" is an
+invitation to press Save.</p>
+<p><strong>An unknown name is listed but never created.</strong> A file in the directory is shown whatever it is
+called, marked "not a hook git runs", because it is <em>there</em> and hiding it would be the old column's
+fault in the other direction; it may be edited, too, since something put it there. Creating one is
+refused — a new file git will never look at is not a hook.</p>
+<p><strong>Deleting is the one thing here that nothing can undo</strong>, so it asks, and the dialog offers
+<strong>switching it off instead</strong> — which is what most people asking to delete a hook actually want. Its
+Delete is deliberately not the primary. A sample is never deleted at all.</p>
+<div class="admonition note">
+<p class="admonition-title">On Windows, 'enabled' means the file is there</p>
+<p>NTFS has no executable bit, and Qt answers the question there from the file's <em>extension</em> — so
+a hook called <code>pre-commit</code> reads as not executable however it was written, and every row on a
+Windows checkout would have said "will not run" about hooks git runs perfectly well.</p>
+<p>Switching one <strong>off</strong> then has no mechanism and is refused <strong>by name</strong> rather than reporting
+success having changed nothing: renaming it is a name git does not look for, and deleting a
+hook to "disable" it would be a destructive act behind a reversible-sounding word. Switching
+one <strong>on</strong> is refused too, for the opposite reason: it is already true.</p>
+</div>
+<p><strong>Sharing a hook is not something this offers</strong>, and the editor says so: a hook is in no commit, so
+it is not pushed and nobody else gets it. Doing it means committing one somewhere and pointing
+<code>core.hooksPath</code> at that directory, which is a decision about a repository rather than a verb this
+app can perform.</p>
+<h2 id="your-editor-terminal-and-file-manager">Your editor, terminal and file manager<a class="headerlink" href="#your-editor-terminal-and-file-manager" title="Permanent link">&para;</a></h2>
+<p><strong>Open ▾</strong>, on the workspace bar and on every fleet card.</p>
+<h3 id="it-works-before-you-have-configured-anything">It works before you have configured anything<a class="headerlink" href="#it-works-before-you-have-configured-anything" title="Permanent link">&para;</a></h3>
+<p>The first version gated every route on a command being set, which meant no button, no menu row and
+no palette entry out of the box — a feature whose only way in was a settings page you would visit if
+you already knew it was there.</p>
+<p>With nothing stored, the first of a small candidate list present on the <strong>PATH</strong> is taken.
+Discovered rather than shipped as a constant, because a default naming a program nobody has is worse
+than none — the button would be there and pressing it would say <code>code</code> could not be started — and
+the settings row says which one was found and <strong>that it was found rather than chosen</strong>.</p>
+<p>Every candidate takes a path as an ordinary argument, which is the whole test for being on the list:
+a terminal editor started detached with no terminal around it opens nothing and reports success.</p>
+<p>The extra directories a windowed process does not inherit are searched too — <code>~/.local/bin</code>,
+<code>/usr/local/bin</code>, <code>/snap/bin</code>, Nix's profiles — because a Homebrew editor is invisible to an app
+launched from the Dock. <strong>Flatpak is out of reach and the code says so</strong>: its exports are named by
+application id, so matching them would mean a second list of app ids for the same programs.</p>
+<h3 id="they-are-command-templates-not-program-names">They are command templates, not program names<a class="headerlink" href="#they-are-command-templates-not-program-names" title="Permanent link">&para;</a></h3>
+<p><code>code %1</code>, <code>wezterm start --cwd %1</code> — because the interesting cases here are all <em>arguments</em>: a new
+window, a folder opened as a workspace, a shell started somewhere. A field that took only a program
+would have to grow a second for its arguments and a third for their order.</p>
+<p><code>%1</code> may appear anywhere or <strong>not at all</strong> — a terminal that takes its directory from the one it was
+started in wants no placeholder — and the path is passed as the process's working directory either
+way.</p>
+<div class="admonition danger">
+<p class="admonition-title">It is not a shell, and that ceiling is why a stored command is safe to run</p>
+<p>No pipes, no <code>&amp;&amp;</code>, no redirection, no substitution, no globbing. The settings file is a text
+file, and a template that reached a shell would be one line of somebody else's editing away
+from arbitrary execution the next time the app started.</p>
+<p>The path is substituted <strong>after</strong> the split, inside whichever argument holds it, so a folder
+called <code>my repo</code>, one with a quote in it, or one called <code>--upload-pack=…</code> is one argument and
+cannot become two. Anything that genuinely needs a shell goes in a script and the script is
+named here.</p>
+</div>
+<p><strong>A command naming a program that is not here is kept and reported.</strong> One can be installed tomorrow,
+and refusing to store the line would be this app deciding what may exist then — so the row prints
+what would run <em>and</em> that it would fail, and the failure names the program and the field to change
+rather than a bare "could not be started".</p>
+<h3 id="one-button-and-the-destinations-are-a-list">One button, and the destinations are a list<a class="headerlink" href="#one-button-and-the-destinations-are-a-list" title="Permanent link">&para;</a></h3>
+<p>Editor, Terminal and Open remote were three buttons side by side on the bar and two more on every
+card — three controls for one question, each appearing and disappearing on its own as a command is
+set or a remote is added, so the strip changed width under the pointer.</p>
+<p>The rows are drawn from <strong>one file</strong> that both menus use, because two copies had already drifted
+three ways: the folder row existed on the bar's menu and not on the card's, the forge row read "Open
+remote" in one and "Open in GitHub" in the other with two palette wordings behind them, and the order
+differed.</p>
+<p>Every label is a <strong>whole verb</strong> — "Open in editor" rather than "Editor" — because the rows are read
+in two places and only one of them has a button saying "Open in…" above it.</p>
+<p><strong>Showing the folder needs no setting at all</strong>: the <em>desktop</em> decides what opens a directory, so this
+app's part is one url. The label is the platform's proper noun — Finder, File Explorer, or "file
+manager" elsewhere — because a Mac reader looks for the first and finds nothing under the third.
+Three names and not two is what the Windows port cost that row: the ternary it replaced is the shape
+a two-platform project acquires everywhere, right up to the moment a third arrives and the <code>else</code>
+starts answering for a case nobody chose it for.</p>
+<h3 id="where-the-verbs-are">Where the verbs are<a class="headerlink" href="#where-the-verbs-are" title="Permanent link">&para;</a></h3>
+<p>A <strong>file</strong> has no per-row button — a button per row is a palette entry per row, and the alphabet does
+not stretch to a file list — so it is a row of the Changes context menu and a button beside a
+commit's file on History.</p>
+<p><strong>Two file lists deliberately do not carry it.</strong> A stash's file is a <em>stashed</em> version, so an editor
+there would open a different file from the one on screen; and a pull request's files are on somebody
+else's branch, which this checkout may well not have at all.</p>
+<p>A commit's file opens <strong>as it stands on disk</strong>, and the button says so — an editor takes a path, and
+a commit's copy of a file is an object with no path. Restore is how the commit's version is reached.
+A path that is not there is refused by name, because an editor handed one <strong>creates an empty file</strong>,
+and the commonest way to arrive at one is a row for a file some commit deleted.</p>
+<div class="admonition note">
+<p class="admonition-title">On Windows, a <code>.cmd</code> shim is refused rather than wrapped</p>
+<p><code>startDetached</code> runs an executable <em>image</em>, and a <code>.cmd</code> or <code>.bat</code> is a file for the command
+interpreter — so it fails. That is not an edge: it is how VS Code and several others put
+themselves on <code>PATH</code>.</p>
+<p>The obvious repair is <code>cmd /c</code>, and it is <strong>refused</strong>: <code>cmd</code> re-parses what it is handed, so
+<code>&amp;</code>, <code>|</code>, <code>^</code> and <code>%</code> in a path would stop being inert, and a folder called <code>a &amp; b</code> is not
+exotic. This file's whole guarantee is that nothing it holds reaches a shell, and buying one
+platform's convenience with it would be the worst trade available.</p>
+<p>So discovery passes over a shim and falls through to the install directory where <code>Code.exe</code> is,
+and a typed one is refused <strong>by name</strong> with the <code>.exe</code> named as what to type instead.</p>
+</div>
+<h2 id="a-command-of-your-own">A command of your own<a class="headerlink" href="#a-command-of-your-own" title="Permanent link">&para;</a></h2>
+<p>A third template, and deliberately <strong>not</strong> a sequence step: that class's guarantee that every step is
+one of this app's own verbs is not being traded away for one feature. This is the other thing
+entirely — an arbitrary program, run once, handed three facts, whose failures are its own.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%1</code></td>
+<td>The repository</td>
+</tr>
+<tr>
+<td><code>%2</code></td>
+<td>The branch</td>
+</tr>
+<tr>
+<td><code>%3</code></td>
+<td>The picked paths, <strong>one argument each</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>%3</code> is what makes it a second template rather than a longer first one: a list has to arrive as a
+list, so it must be an argument of its own and expands to as many as there are — <strong>to nothing at all
+with nothing picked</strong>, rather than to an empty string a program would read as an argument meaning
+<code>""</code>. An argument that merely <em>contains</em> <code>%3</code> is refused <strong>by name</strong>, because <code>--file=%3</code> means one
+thing with one path and nothing honest with three, and a command whose argument list changed shape
+with the size of a selection is one that does something different depending on how many rows were
+lit.</p>
+<p><strong>Nothing is discovered here</strong>, unlike the two above: nobody can guess what somebody else wants to
+run. Empty means empty and every route is absent while it is.</p>
+<p><strong>It is two settings, because the name is what the control is made of.</strong> A button reading "Run", a
+palette entry reading "Run" and a legend line reading "Run" say nothing about what would happen, and
+this is the one verb whose subject is a program nobody but its author knows anything about. A command
+with no name counts as unset.</p>
+<p>The button is on <strong>Changes' own header</strong> rather than the file menu: with nothing picked it is still a
+perfectly good thing to press — "run my script on this repository" is what most of these are — and a
+row reached by right-clicking a file would make an empty selection unreachable.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Source-available under the PolyForm Noncommercial License 1.0.0. Commercial use requires a paid licence.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/source-manager/app" target="_blank" rel="noopener" title="source-manager on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.top", "navigation.indexes", "content.action.edit", "content.code.copy", "content.tooltips", "search.highlight", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
